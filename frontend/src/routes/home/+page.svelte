@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { isAuthenticated, user } from '../../auth/auth';
+	import Chat from '../../components/Chat.svelte';
 	import ErrorAuth from '../../components/ErrorAuth.svelte';
 	export let data;
 	const username = data.props.userName;
@@ -22,11 +23,12 @@
 	<div class="container mx-auto py-8">
 		<h1 class="text-3xl text-center mb-4">Home</h1>
 		<p class="text-lg text-gray-700 leading-relaxed">Welcome, {username}!</p>
-		<p class="text-lg text-gray-700 leading-relaxed">
+		<p class="text-lg text-gray-700 leading-relaxed mb-4">
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut ultricies nisl. Phasellus
 			ultricies sem a massa ultricies, ac tincidunt est laoreet. Proin pulvinar felis at sem
 			malesuada, et ultricies purus posuere.
 		</p>
+		<Chat />
 	</div>
 {:else}
 	<ErrorAuth />
