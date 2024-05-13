@@ -32,7 +32,7 @@
 </script>
 
 {#if allowedPages.includes($page.url.pathname) && currentUsername && isAuthenticated}
-	<header class="bg-gray-800 text-white py-4">
+	<header class="bg-gray-800 text-white py-4 sticky top-0 opacity-90">
 		<nav class="flex justify-center">
 			<ul class="flex space-x-4">
 				<li>
