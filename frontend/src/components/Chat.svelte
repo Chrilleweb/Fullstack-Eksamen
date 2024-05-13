@@ -68,9 +68,10 @@
 <div
 	class="chat-container flex flex-col h-96 border border-gray-300 rounded-lg overflow-hidden shadow-lg"
 >
+<div class="header bg-gray-800 opacity-80 text-white text-lg font-semibold p-3">Live Chat</div>
 	<ul bind:this={messageContainer} class="messages flex-1 overflow-y-auto p-3 space-y-2 bg-gray-50">
 		{#each $messages as message}
-			<li class="bg-white p-2 rounded shadow-sm">{message}</li>
+			<li class="bg-gray-600 opacity-80 text-gray-100 p-2 rounded shadow-sm">{message}</li>
 		{/each}
 	</ul>
 	<div class="input-group flex p-2 bg-gray-100">
