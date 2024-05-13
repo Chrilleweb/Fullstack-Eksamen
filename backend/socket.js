@@ -12,7 +12,6 @@ function initializeSocket(server) {
   });
 
   io.on("connection", (socket) => {
-    console.log("A user connected");
 
     // When a new client connects, send all previous messages
     ChatMessage.getAll()
@@ -41,9 +40,6 @@ function initializeSocket(server) {
         });
     });
 
-    socket.on("disconnect", () => {
-      console.log("User disconnected");
-    });
   });
 
   return io;
