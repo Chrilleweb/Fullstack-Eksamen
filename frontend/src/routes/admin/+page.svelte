@@ -126,7 +126,7 @@
 				{/each}
 			</tbody>
 		</table>
-		<a href="/home"><img class="mt-4" src="/backArrow.svg" alt="Back" height="40" width="40"></a>
+		<a href="/home"><img class="mt-4" src="/backArrow.svg" alt="Back" height="40" width="40" /></a>
 	</div>
 	<Confirmation
 		isOpen={showConfirmation}

@@ -15,8 +15,10 @@
 </svelte:head>
 
 {#if userRole === 'admin'}
-	<h1>YOU ARE ADMIN</h1>
-	<a class="text-blue-500" href="/admin">Admin page</a>
+	<div class="bg-gray-800 opacity-90 p-4 mb-4 rounded-lg z-0">
+		<h1 class="text-2xl font-bold text-gray-100">Admin Dashboard</h1>
+		<a class="text-blue-500 hover:text-blue-700" href="/admin">Access Admin Page</a>
+	</div>
 {/if}
 
 {#if userId && isAuthenticated}

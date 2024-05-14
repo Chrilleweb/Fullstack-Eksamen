@@ -32,7 +32,7 @@
 </script>
 
 {#if allowedPages.includes($page.url.pathname) && currentUsername && isAuthenticated}
-	<header class="bg-gray-800 text-white py-4 sticky top-0 opacity-90">
+	<header class="bg-gray-800 text-white py-4 sticky top-0 opacity-90 z-10">
 		<nav class="flex justify-center">
 			<ul class="flex space-x-4">
 				<li>
@@ -42,7 +42,10 @@
 					<button on:click={logout} class="hover:text-gray-300">Logout</button>
 				</li>
 				<li>
-					<div class="flex"><img class="mr-2" src="/userIcon.svg" alt="user" height="20" width="20"><p>{currentUsername}</p></div>
+					<div class="flex">
+						<img class="mr-2" src="/userIcon.svg" alt="user" height="20" width="20" />
+						<p>{currentUsername}</p>
+					</div>
 				</li>
 			</ul>
 		</nav>
