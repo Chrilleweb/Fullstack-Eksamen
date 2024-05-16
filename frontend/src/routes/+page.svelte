@@ -1,13 +1,14 @@
 <svelte:head>
-	<title>Welcome</title>
-	<meta name="description" content="Welcome" />
+    <title>Welcome to QuitSmarter</title>
+    <meta name="description" content="QuitSmarter - Track your journey to becoming smoke-free, see how much you've saved, and connect with others on the same path." />
 </svelte:head>
 
 <div class="container mx-auto py-8">
-	<h1 class="text-3xl text-center mb-4">Welcome to our website!</h1>
-	<p class="text-lg text-gray-700 leading-relaxed">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut ultricies nisl. Phasellus
-		ultricies sem a massa ultricies, ac tincidunt est laoreet. Proin pulvinar felis at sem
-		malesuada, et ultricies purus posuere.
-	</p>
+    <h1 class="text-3xl text-center mb-4">Welcome to QuitSmarter!</h1>
+    <p class="text-lg text-gray-700 leading-relaxed">
+        Congratulations on taking the first step towards a healthier lifestyle! QuitSmarter is designed to support you on your journey to becoming smoke-free. By logging in, you've unlocked a powerful tool to track the cigarettes you haven't smoked and the money you've saved. 
+    </p>
+    <p class="text-lg text-gray-700 leading-relaxed">
+        But that's not all — our community features live chat where you can share experiences, tips, and encouragement with others who are quitting too. Every step forward is a victory, and QuitSmarter is here to celebrate each one with you. Let's make your smoke-free journey successful together!
+    </p>
 </div>
