@@ -20,7 +20,7 @@ CREATE TABLE chat_messages (
 CREATE TABLE quit_info (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    start_date DATE NOT NULL,
+    quit_date DATE NOT NULL,
     cigarettes_per_day INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );

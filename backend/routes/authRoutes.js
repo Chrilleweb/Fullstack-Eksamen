@@ -16,6 +16,5 @@ router.get("/home", authenticateToken.authenticateToken, authController.home_get
 router.get("/quit-info/:userId", authenticateToken.authenticateToken, quitInfoController.getQuitInfo);
 router.post("/quit-info", authenticateToken.authenticateToken, quitInfoController.addQuitInfo);
 router.put("/quit-info/:userId", authenticateToken.authenticateToken, quitInfoController.updateQuitInfo);
-router.delete("/quit-info/:userId", authenticateToken.authenticateToken, quitInfoController.deleteQuitInfo);
 
 module.exports = router;

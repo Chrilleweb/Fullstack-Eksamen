@@ -16,10 +16,10 @@ class QuitInfo {
   }
 
   // Function to create a new quit record
-  static create(userId, startDate, cigarettesPerDay) {
+  static create(userId, quitDate, cigarettesPerDay) {
     return new Promise((resolve, reject) => {
-      const query = "INSERT INTO quit_info (user_id, start_date, cigarettes_per_day) VALUES (?, ?, ?)";
-      db.query(query, [userId, startDate, cigarettesPerDay], (error, results) => {
+      const query = "INSERT INTO quit_info (user_id, quit_date, cigarettes_per_day) VALUES (?, ?, ?)";
+      db.query(query, [userId, quitDate, cigarettesPerDay], (error, results) => {
         if (error) {
           reject(error);
         } else {
@@ -30,10 +30,10 @@ class QuitInfo {
   }
 
   // Function to update an existing quit record
-  static update(userId, startDate, cigarettesPerDay) {
+  static update(userId, quitDate, cigarettesPerDay) {
     return new Promise((resolve, reject) => {
-      const query = "UPDATE quit_info SET start_date = ?, cigarettes_per_day = ? WHERE user_id = ?";
-      db.query(query, [startDate, cigarettesPerDay, userId], (error, results) => {
+      const query = "UPDATE quit_info SET quit_date = ?, cigarettes_per_day = ? WHERE user_id = ?";
+      db.query(query, [quitDate, cigarettesPerDay, userId], (error, results) => {
         if (error) {
           reject(error);
         } else {
