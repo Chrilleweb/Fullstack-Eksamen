@@ -71,14 +71,16 @@
 </svelte:head>
 
 {#if userId && isAuthenticated}
-	<div class="container mx-auto pt-6 px-6 bg-white shadow-md rounded-lg mt-10">
+	<div class="container mx-auto p-6 bg-white shadow-md rounded-lg mt-10">
 		<h1 class="text-3xl font-bold mb-4">User Details</h1>
 		<div class="mb-4">
 			<p><span class="font-semibold">Username:</span> {username}</p>
 			<p><span class="font-semibold">Email:</span> {userEmail}</p>
 			<p><span class="font-semibold">Role:</span> {userRole}</p>
 		</div>
-		<button on:click={() => askDeleteConfirmation(userId)} class="text-red-500 hover:text-red-700"
+		<button
+			on:click={() => askDeleteConfirmation(userId)}
+			class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500 transition duration-150"
 			>Delete user</button
 		>
 	</div>

@@ -42,12 +42,12 @@
 					<button on:click={logout} class="hover:text-gray-300">Logout</button>
 				</li>
 				<li>
-					<div class="flex">
-						<a href="/user-details"
-							><img class="mr-2" src="/userIcon.svg" alt="user" height="20" width="20" /></a
-						>
-						<p>{currentUsername}</p>
-					</div>
+					<a href="/user-details">
+						<div class="flex">
+							<img class="mr-2" src="/userIcon.svg" alt="user" height="20" width="20" />
+							<p>{currentUsername}</p>
+						</div>
+					</a>
 				</li>
 			</ul>
 		</nav>
