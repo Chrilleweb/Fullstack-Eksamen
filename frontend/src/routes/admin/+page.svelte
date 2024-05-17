@@ -2,6 +2,7 @@
 	import { isAuthenticated, user } from '../../auth/auth';
 	import ErrorAdmin from '../../components/ErrorAdmin.svelte';
 	import Confirmation from '../../components/Confirmation.svelte';
+	import BackArrow from '../../components/backArrow.svelte';
 	export let data;
 	const userName = data.props.userName;
 	const userId = data.props.userId;
@@ -126,7 +127,7 @@
 				{/each}
 			</tbody>
 		</table>
-		<a href="/home"><img class="mt-4" src="/svg/backArrow.svg" alt="Back" height="40" width="40" /></a>
+		<BackArrow route="/home" />
 	</div>
 	<Confirmation
 		isOpen={showConfirmation}

@@ -4,6 +4,7 @@
 	import Confirmation from '../../components/Confirmation.svelte';
 	import { goto } from '$app/navigation';
 	import Cookies from 'js-cookie';
+	import BackArrow from '../../components/backArrow.svelte';
 	export let data;
 	const username = data.props.userName;
 	const userId = data.props.userId;
@@ -100,6 +101,7 @@
             </button>
           </div> 
     </div>
+    <BackArrow route="/home" />
   <Confirmation
     isOpen={showConfirmation}
     message="Are you sure you want to delete {username}?"
