@@ -3,7 +3,7 @@
 	import Cookies from 'js-cookie';
 	import { page } from '$app/stores';
 	import { isAuthenticated, user } from '../auth/auth';
-	const allowedPages = ['/home', '/admin'];
+	const allowedPages = ['/home', '/admin', '/user-details'];
 
 	let currentUsername: string;
 	user.subscribe((value) => {
@@ -43,7 +43,7 @@
 				</li>
 				<li>
 					<div class="flex">
-						<img class="mr-2" src="/userIcon.svg" alt="user" height="20" width="20" />
+						<a href="/user-details"><img class="mr-2" src="/userIcon.svg" alt="user" height="20" width="20" /></a>
 						<p>{currentUsername}</p>
 					</div>
 				</li>
