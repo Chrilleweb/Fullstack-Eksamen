@@ -83,6 +83,10 @@
 			class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500 transition duration-150"
 			>Delete user</button
 		>
+        <button
+            on:click={() => goto('/request-reset')}
+            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-150"
+            >Request Password Reset</button>
 	</div>
 	<Confirmation
 		isOpen={showConfirmation}
