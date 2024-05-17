@@ -44,7 +44,7 @@
 				<li>
 					<a href="/user-details">
 						<div class="flex">
-							<img class="mr-2" src="/userIcon.svg" alt="user" height="20" width="20" />
+							<img class="mr-2" src="/svg/userIcon.svg" alt="user" height="20" width="20" />
 							<p>{currentUsername}</p>
 						</div>
 					</a>
