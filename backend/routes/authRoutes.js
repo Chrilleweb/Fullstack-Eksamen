@@ -12,6 +12,7 @@ router.put("/admin/:id", authenticateToken.authenticateToken, authorizeAdmin.aut
 router.delete("/admin/:id", authenticateToken.authenticateToken, authorizeAdmin.authorizeAdmin, adminController.deleteUser);
 
 router.get("/home", authenticateToken.authenticateToken, authController.home_get);
+router.delete("/home/delete-user", authenticateToken.authenticateToken, authController.delete_user);
 
 router.get("/quit-info/:userId", authenticateToken.authenticateToken, quitInfoController.getQuitInfo);
 router.post("/quit-info", authenticateToken.authenticateToken, quitInfoController.addQuitInfo);

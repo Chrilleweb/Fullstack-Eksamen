@@ -61,13 +61,23 @@ class User {
     });
   }
 
-  static deleteUser(id) {
+  static deleteUser(userId) {
     return new Promise((resolve, reject) => {
-      db.query("DELETE FROM users WHERE id = ?", [id], (error, results) => {
-        if (error) {
-          reject(error);
+      // First, delete related records in the quit_info table
+      const deleteQuitInfoQuery = "DELETE FROM quit_info WHERE user_id = ?";
+      db.query(deleteQuitInfoQuery, [userId], (quitInfoError) => {
+        if (quitInfoError) {
+          reject(quitInfoError);
         } else {
-          resolve(results.affectedRows > 0);
+          // Then, delete the user from the users table
+          const deleteUserQuery = "DELETE FROM users WHERE id = ?";
+          db.query(deleteUserQuery, [userId], (userError, results) => {
+            if (userError) {
+              reject(userError);
+            } else {
+              resolve(results.affectedRows > 0);
+            }
+          });
         }
       });
     });
