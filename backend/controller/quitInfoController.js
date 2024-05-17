@@ -7,7 +7,7 @@ const getQuitInfo = async (req, res) => {
     if (quitInfo.length > 0) {
       res.status(200).json(quitInfo[0]);
     } else {
-      res.status(404).json({ message: "Quit info not found" });
+      res.status(200).json({ message: "No quit info found for this user", data: null });
     }
   } catch (error) {
     res.status(500).json({ message: "An error occurred", error: error.message });
