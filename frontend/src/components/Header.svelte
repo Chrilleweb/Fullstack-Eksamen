@@ -8,7 +8,7 @@
 	<nav class="flex flex-col md:flex-row justify-between items-center py-4 px-10 ">
 	  <div class="flex items-center">
 		<a href="/" class="flex items-center text-2xl font-bold text-white">
-		  <img src="/svg/logo.svg" alt="Task Manager Logo" width="50" height="50" class="mr-2" />
+		  <img src="/svg/logo.svg" alt="QuitSmarter Logo" width="50" height="50" class="mr-2" />
 		  QuitSmarter
 		</a>
 	  </div>
