@@ -127,7 +127,7 @@
 				{/each}
 			</tbody>
 		</table>
-		<BackArrow route="/home" />
+		<BackArrow />
 	</div>
 	<Confirmation
 		isOpen={showConfirmation}

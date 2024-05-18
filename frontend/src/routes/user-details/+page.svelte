@@ -111,8 +111,8 @@
 				<span class="sm:text-base text-xs">Request Password Reset</span>
 			</button>
 		</div>
+        <BackArrow />
 	</div>
-	<BackArrow route="/home" />
 	<Confirmation
 		isOpen={showConfirmation}
 		message="Are you sure you want to delete {username}?"

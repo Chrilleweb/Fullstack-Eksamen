@@ -7,11 +7,6 @@
 	let message = writable('');
 	let loading = writable(false);
 
-	let authenticated: boolean;
-	isAuthenticated.subscribe((value) => {
-		authenticated = value;
-	});
-
 	async function handleResetRequest(event: Event) {
 		event.preventDefault();
 		loading.set(true);
@@ -74,9 +69,5 @@
 			{/if}
 		</button>
 	</form>
+	<BackArrow />
 </div>
-{#if authenticated}
-	<BackArrow route="/home" />
-{:else}
-	<BackArrow route="/login" />
-{/if}
