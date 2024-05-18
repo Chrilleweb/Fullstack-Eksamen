@@ -32,24 +32,30 @@
 </script>
 
 {#if allowedPages.includes($page.url.pathname) && currentUsername && isAuthenticated}
-	<header class="bg-gray-800 text-white py-4 sticky top-0 opacity-90 z-10">
-		<nav class="flex justify-center">
-			<ul class="flex space-x-4">
-				<li>
-					<a class="hover:text-gray-300" href="home">Home</a>
-				</li>
-				<li>
-					<button on:click={logout} class="hover:text-gray-300">Logout</button>
-				</li>
-				<li>
-					<a href="/user-details">
-						<div class="flex">
-							<img class="mr-2" src="/svg/userIcon.svg" alt="user" height="20" width="20" />
-							<p class="hover:text-gray-300">{currentUsername}</p>
-						</div>
-					</a>
-				</li>
-			</ul>
+	<header class="py-4 md:sticky top-0 z-50">
+		<nav class="flex flex-col md:flex-row justify-between items-center py-4 px-10 ">
+		  <div class="flex items-center">
+			<a href="/" class="flex items-center text-2xl font-bold text-white">
+			  <img src="/svg/logo.svg" alt="Task Manager Logo" width="50" height="50" class="mr-2" />
+			  QuitSmarter
+			</a>
+		  </div>
+		  <ul class="flex space-x-4 text-white items-center">
+			<li>
+				<a class=" hover:text-gray-300" href="home">Home</a>
+			</li>
+			<li>
+				<button on:click={logout} class=" hover:text-gray-300">Logout</button>
+			</li>
+			<li>
+				<a href="/user-details">
+					<div class="flex">
+						<img class="mr-2" src="/svg/userIcon.svg" alt="user" height="20" width="20" />
+						<p class=" hover:text-gray-300">{currentUsername}</p>
+					</div>
+				</a>
+			</li>
+		  </ul>
 		</nav>
-	</header>
+	  </header>
 {/if}
