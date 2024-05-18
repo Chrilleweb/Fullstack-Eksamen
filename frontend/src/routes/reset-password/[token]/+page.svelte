@@ -85,7 +85,7 @@
 		</div>
 		<button
 			type="submit"
-			class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+			class="bg-green-800 hover:bg-green-900 text-white font-bold py-2 px-4 rounded"
 			disabled={processing}
 		>
 			{#if processing}Processing...{:else}Reset Password{/if}

@@ -1,6 +1,5 @@
 <script>
 	import Header from '../components/Header.svelte';
-	import HeaderAuth from '../components/HeaderAuth.svelte';
 	import './styles.css';
 
 	let year = new Date().getFullYear();
@@ -8,7 +7,6 @@
 
 <div class="app">
 	<Header />
-	<HeaderAuth />
 
 	<main>
 		<slot />
