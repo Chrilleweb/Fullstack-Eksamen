@@ -38,7 +38,7 @@
 	<title>Reset Password</title>
 </svelte:head>
 
-<div class="mt-40 mx-auto bg-white p-6 rounded-md shadow-md w-full max-w-sm">
+<div class="mt-10 mx-auto bg-white p-6 rounded-md shadow-md w-full max-w-sm">
 	<h1 class="text-2xl font-semibold mb-4 text-center">Reset Password</h1>
 	{#if $message}
 		<p class="toast show">{$message}</p>
