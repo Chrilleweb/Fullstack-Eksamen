@@ -4,7 +4,7 @@
 </script>
 
 {#if allowedPages.includes($page.url.pathname)}
-<header class="py-4 sticky top-0">
+<header class="py-4 md:sticky top-0">
 	<nav class="flex flex-col md:flex-row justify-between items-center py-4 px-10 ">
 	  <div class="flex items-center">
 		<a href="/" class="flex items-center text-2xl font-bold text-white">
@@ -14,13 +14,13 @@
 	  </div>
 	  <ul class="flex space-x-4 text-white">
 		<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-		  <a href="/" class=" hover:text-gray-200">Welcome</a>
+		  <a href="/" class=" hover:text-gray-800">Welcome</a>
 		</li>
 		<li aria-current={$page.url.pathname === '/login' ? 'page' : undefined}>
-		  <a href="/login" class=" hover:text-gray-200">Login</a>
+		  <a href="/login" class=" hover:text-gray-800">Login</a>
 		</li>
 		<li aria-current={$page.url.pathname === '/signup' ? 'page' : undefined}>
-		  <a href="/signup" class=" hover:text-gray-200">Sign up</a>
+		  <a href="/signup" class=" hover:text-gray-800">Sign up</a>
 		</li>
 	  </ul>
 	</nav>

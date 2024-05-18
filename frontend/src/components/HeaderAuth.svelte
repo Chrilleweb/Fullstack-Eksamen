@@ -42,16 +42,16 @@
 		  </div>
 		  <ul class="flex space-x-4 text-white items-center">
 			<li>
-				<a class=" hover:text-gray-300" href="home">Home</a>
+				<a class=" hover:text-gray-800" href="home">Home</a>
 			</li>
 			<li>
-				<button on:click={logout} class=" hover:text-gray-300">Logout</button>
+				<button on:click={logout} class=" hover:text-gray-800">Logout</button>
 			</li>
 			<li>
 				<a href="/user-details">
 					<div class="flex">
 						<img class="mr-2" src="/svg/userIcon.svg" alt="user" height="20" width="20" />
-						<p class=" hover:text-gray-300">{currentUsername}</p>
+						<p class=" hover:text-gray-800">{currentUsername}</p>
 					</div>
 				</a>
 			</li>
