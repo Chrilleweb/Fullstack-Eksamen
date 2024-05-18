@@ -1,9 +1,16 @@
 <script lang="ts">
+	import { isAuthenticated } from '../../auth/auth';
 	import { writable } from 'svelte/store';
+	import BackArrow from '../../components/backArrow.svelte';
 
 	let email: string = '';
 	let message = writable('');
 	let loading = writable(false);
+
+	let authenticated: boolean;
+	isAuthenticated.subscribe((value) => {
+		authenticated = value;
+	});
 
 	async function handleResetRequest(event: Event) {
 		event.preventDefault();
@@ -68,3 +75,8 @@
 		</button>
 	</form>
 </div>
+{#if authenticated}
+	<BackArrow route="/home" />
+{:else}
+	<BackArrow route="/login" />
+{/if}
