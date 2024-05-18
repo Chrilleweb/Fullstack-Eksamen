@@ -3,6 +3,6 @@
 	<p class="text-lg text-gray-700 leading-relaxed">
 		This page is restricted to administrators. Please
 		<a href="/login" class="text-blue-500">login</a> with an administrator account, or return to the
-		<a href="/home" class="text-blue-500">homepage</a>.
+		<a href="/" class="text-blue-500">homepage</a>.
 	</p>
 </div>

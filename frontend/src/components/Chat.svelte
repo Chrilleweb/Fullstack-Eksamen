@@ -60,7 +60,7 @@
 	}
 
 	$: if (typeof window !== 'undefined') {
-		document.title = $unreadMessages > 0 ? `(${$unreadMessages}) Live Chat` : 'Home';
+		document.title = $unreadMessages > 0 ? `(${$unreadMessages}) Live Chat` : 'QuitSmarter';
 	}
 
 	function sendMessage() {

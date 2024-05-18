@@ -28,7 +28,7 @@
 
 			Cookies.set('token', data.token, { expires: 1 });
 			isAuthenticated.set(true);
-			goto('/home');
+			goto('/');
 		} catch (error) {
 			console.error('Login failed:', error);
 		}

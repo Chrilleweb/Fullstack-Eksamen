@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
 	import Cookies from 'js-cookie';
 	import { page } from '$app/stores';
 	import { isAuthenticated, user } from '../auth/auth';
-	const allowedPages = ['/home', '/admin', '/user-details', '/request-reset'];
+	const allowedPages = ['/', '/admin', '/user-details', '/request-reset'];
 
 	let currentUsername: string;
 	user.subscribe((value) => {
@@ -24,7 +23,7 @@
 				Cookies.remove('token');
 				isAuthenticated.set(false);
 				user.set('');
-				goto('/');
+				location.reload();
 			}
 		} catch (error) {
 			console.error('Fetch error:', error);
@@ -36,14 +35,14 @@
 	<header class="py-4 md:sticky top-0 z-50">
 		<nav class="flex flex-col md:flex-row justify-between items-center py-4 px-10">
 			<div class="flex items-center">
-				<a href="/home" class="flex items-center text-2xl font-bold text-white">
+				<a href="/" class="flex items-center text-2xl font-bold text-white">
 					<img src="/svg/logo.svg" alt="QuitSmarter Logo" width="50" height="50" class="mr-2" />
 					QuitSmarter
 				</a>
 			</div>
 			<ul class="flex space-x-4 text-white items-center">
 				<li>
-					<a class=" hover:text-gray-800" href="home">Home</a>
+					<a class=" hover:text-gray-800" href="/">Home</a>
 				</li>
 				<li>
 					<button on:click={logout} class=" hover:text-gray-800">Logout</button>
