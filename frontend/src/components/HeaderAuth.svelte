@@ -36,7 +36,7 @@
 		<nav class="flex justify-center">
 			<ul class="flex space-x-4">
 				<li>
-					<a href="home">Home</a>
+					<a class="hover:text-gray-300" href="home">Home</a>
 				</li>
 				<li>
 					<button on:click={logout} class="hover:text-gray-300">Logout</button>
@@ -45,7 +45,7 @@
 					<a href="/user-details">
 						<div class="flex">
 							<img class="mr-2" src="/svg/userIcon.svg" alt="user" height="20" width="20" />
-							<p>{currentUsername}</p>
+							<p class="hover:text-gray-300">{currentUsername}</p>
 						</div>
 					</a>
 				</li>
