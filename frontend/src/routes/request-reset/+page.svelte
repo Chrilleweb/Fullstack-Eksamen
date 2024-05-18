@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { isAuthenticated } from '../../auth/auth';
 	import { writable } from 'svelte/store';
 	import BackArrow from '../../components/backArrow.svelte';
 

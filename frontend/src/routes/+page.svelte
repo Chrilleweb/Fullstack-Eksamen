@@ -6,11 +6,8 @@
 	/>
 </svelte:head>
 
-<div class="container mx-auto py-8 bg-green-950 opacity-80 text-white rounded-3xl">
-	<div class="md:flex items-center justify-center">
-	<h1 class="text-3xl text-center mb-4 font-bold">Welcome to QuitSmarter!</h1>
-	<img src="/svg/logo.svg" alt="QuitSmarter Logo" width="50" height="50" class="mb-6 hidden md:block md:ml-2" />
-</div>
+<div class="container mx-auto py-8 bg-green-700 opacity-80 text-white rounded-3xl">
+		<h1 class="text-3xl text-center mb-4 font-bold">Welcome to QuitSmarter!</h1>
 	<p class="text-lg leading-relaxed text-center px-8 border-b-2 pb-6">
 		Congratulations on taking the first step towards a healthier lifestyle! QuitSmarter is designed
 		to support you on your journey to becoming smoke-free. By logging in, you've unlocked a powerful
@@ -22,8 +19,15 @@
 		is here to celebrate each one with you. Let's make your smoke-free journey successful together!
 	</p>
 	<div class="flex justify-center space-x-4 pt-6">
-		<a href="/login" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition duration-150">Login</a>
-		<a href="/signup" class="bg-green-800 text-white px-4 py-2 rounded-md hover:bg-green-900 transition duration-150">Sign up</a>
-	  </div>
+		<a
+			href="/login"
+			class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition duration-150"
+			>Login</a
+		>
+		<a
+			href="/signup"
+			class="bg-green-800 text-white px-4 py-2 rounded-md hover:bg-green-900 transition duration-150"
+			>Sign up</a
+		>
+	</div>
 </div>
-
