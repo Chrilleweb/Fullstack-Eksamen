@@ -111,7 +111,7 @@
 			</button>
 			<button
 				on:click={() => goto('/request-reset')}
-				class="bg-gray-800 text-white px-3 py-1 rounded-md hover:bg-gray-900 transition duration-150 flex items-center space-x-1"
+				class="bg-gray-500 text-white px-3 py-1 rounded-md hover:bg-gray-600 transition duration-150 flex items-center space-x-1"
 			>
 				<img src="/svg/reset-icon.svg" alt="Reset Icon" class="w-4 h-4" />
 				<span class="sm:text-base text-xs">Request Password Reset</span>
