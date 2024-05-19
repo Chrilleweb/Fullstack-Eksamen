@@ -34,7 +34,7 @@
 		class="container mx-auto py-10 px-6 bg-gradient-to-r from-gray-900 to-green-700 text-white rounded-3xl shadow-lg opacity-80"
 	>
 		<h1 class="text-4xl text-center mb-6 font-extrabold">Welcome to QuitSmarter!</h1>
-		<p class="text-lg leading-relaxed text-center px-10 border-b-2 border-gray-600 pb-6">
+		<p class="text-lg leading-relaxed text-center px-10 border-b-2 pb-6">
 			Congratulations on taking the first step towards a healthier lifestyle! QuitSmarter is
 			designed to support you on your journey to becoming smoke-free. By logging in, you've unlocked
 			a powerful tool to track the cigarettes you haven't smoked and the money you've saved.

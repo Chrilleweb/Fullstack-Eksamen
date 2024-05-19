@@ -85,27 +85,32 @@
 </script>
 
 <div
-	class="chat-container flex flex-col h-96 border border-gray-300 rounded-lg overflow-hidden shadow-lg"
+	class="container mx-auto py-10 px-6 bg-gradient-to-r from-gray-900 to-green-700 text-white rounded-3xl shadow-lg opacity-80"
 >
-	<div class="header bg-gray-800 opacity-80 text-white text-lg font-semibold p-3">Live Chat</div>
-	<ul bind:this={messageContainer} class="messages flex-1 overflow-y-auto p-3 space-y-2 bg-gray-50">
-		{#each $messages as message}
-			<li class="bg-gray-600 opacity-80 text-gray-100 p-2 rounded shadow-sm">{message}</li>
-		{/each}
-	</ul>
-	<div class="input-group flex p-2 bg-gray-100">
-		<input
-			type="text"
-			bind:value={messageInput}
-			on:keydown={checkForEnter}
-			placeholder="Type a message..."
-			class="flex-1 p-2 border border-gray-300 rounded outline-none focus:ring-2 focus:ring-blue-500 transition duration-150 ease-in-out"
-		/>
-		<button
-			on:click={sendMessage}
-			class="ml-2 px-4 py-2 bg-gray-400 text-white font-semibold rounded hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+	<div class="chat-container flex flex-col h-96 overflow-hidden rounded-lg">
+		<div class="header bg-gray-800 opacity-80 text-white text-lg font-semibold p-3">Live Chat</div>
+		<ul
+			bind:this={messageContainer}
+			class="messages flex-1 overflow-y-auto p-3 space-y-2 bg-gray-700"
 		>
-			Send
-		</button>
+			{#each $messages as message}
+				<li class="bg-gray-600 opacity-80 text-gray-100 p-2 rounded shadow-sm">{message}</li>
+			{/each}
+		</ul>
+		<div class="input-group flex p-2 bg-gray-800 rounded-b-lg">
+			<input
+				type="text"
+				bind:value={messageInput}
+				on:keydown={checkForEnter}
+				placeholder="Type a message..."
+				class="flex-1 p-2.5 border border-gray-600 rounded-lg outline-none focus:ring-2 focus:ring-blue-500 transition duration-150 ease-in-out bg-gray-700 placeholder-gray-400 text-white"
+			/>
+			<button
+				on:click={sendMessage}
+				class="ml-2 px-4 sm:px-8 py-2.5 bg-green-700 text-white font-semibold rounded-lg hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+			>
+				Send
+			</button>
+		</div>
 	</div>
 </div>
