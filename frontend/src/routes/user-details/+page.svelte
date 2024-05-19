@@ -73,23 +73,29 @@
 
 {#if userId && isAuthenticated}
 	<div
-		class="bg-gradient-to-r from-gray-300 to-green-700 p-6 rounded-t-lg flex justify-between items-center"
+		class="bg-gradient-to-r from-gray-900 to-green-700 p-6 rounded-t-lg flex justify-between items-center opacity-80"
 	>
 		<h1 class="text-4xl font-extrabold text-white">User Profile</h1>
 		<img src="/svg/user-details.svg" alt="User Icon" class="w-12 h-12" />
 	</div>
-	<div class="bg-gradient-to-r from-gray-300 to-green-700 p-6 rounded-b-lg space-y-6">
+	<div class="bg-gradient-to-r from-gray-900 to-green-700 p-6 rounded-b-lg space-y-6 opacity-80">
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 			<div class="space-y-4 p-4 rounded-lg">
-				<p class="text-md text-white bg-gray-500 p-2 rounded-md">
+				<p
+					class="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 text-white"
+				>
 					<span class="font-semibold text-gray-300">Username:</span>
 					{username}
 				</p>
-				<p class="text-md text-white bg-gray-500 p-2 rounded-md">
+				<p
+					class="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 text-white"
+				>
 					<span class="font-semibold text-gray-300">Email:</span>
 					{userEmail}
 				</p>
-				<p class="text-md text-white bg-gray-500 p-2 rounded-md">
+				<p
+					class="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 text-white"
+				>
 					<span class="font-semibold text-gray-300">Role:</span>
 					{userRole}
 				</p>
@@ -98,14 +104,14 @@
 		<div class="flex justify-center md:justify-end space-x-2 mt-4 md:mt-0">
 			<button
 				on:click={() => askDeleteConfirmation(userId)}
-				class="bg-red-400 text-white px-3 py-1 rounded-md hover:bg-red-500 transition duration-150 flex items-center space-x-1"
+				class="bg-red-800 text-white px-3 py-1 rounded-md hover:bg-red-900 transition duration-150 flex items-center space-x-1"
 			>
 				<img src="/svg/delete-icon.svg" alt="Delete Icon" class="w-4 h-4" />
 				<span class="sm:text-base text-xs">Delete User</span>
 			</button>
 			<button
 				on:click={() => goto('/request-reset')}
-				class="bg-gray-400 text-white px-3 py-1 rounded-md hover:bg-gray-500 transition duration-150 flex items-center space-x-1"
+				class="bg-gray-800 text-white px-3 py-1 rounded-md hover:bg-gray-900 transition duration-150 flex items-center space-x-1"
 			>
 				<img src="/svg/reset-icon.svg" alt="Reset Icon" class="w-4 h-4" />
 				<span class="sm:text-base text-xs">Request Password Reset</span>
