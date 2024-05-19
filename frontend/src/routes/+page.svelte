@@ -31,7 +31,7 @@
 		<Chat />
 	</div>
 {:else}
-	<div class="container mx-auto py-8 bg-green-700 opacity-80 text-white rounded-3xl">
+	<div class="container mx-auto py-8 bg-gray-900 opacity-80 text-white rounded-3xl">
 		<h1 class="text-3xl text-center mb-4 font-bold">Welcome to QuitSmarter!</h1>
 		<p class="text-lg leading-relaxed text-center px-8 border-b-2 pb-6">
 			Congratulations on taking the first step towards a healthier lifestyle! QuitSmarter is
