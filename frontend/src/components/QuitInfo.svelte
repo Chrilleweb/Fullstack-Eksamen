@@ -126,59 +126,60 @@
 	}
 </script>
 
-<div class="container mx-auto mb-4">
+<div
+	class="container mx-auto py-10 px-6 bg-gradient-to-r from-gray-900 to-green-700 text-white rounded-3xl shadow-lg opacity-80 mb-10"
+>
 	{#if $quitInfo}
 		<button
 			on:click={toggleForm}
-			class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500 transition duration-150 mb-4"
+			class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition duration-150 mb-4"
 		>
 			{isFormVisible ? 'Hide Quit Info' : 'Update Quit Info'}
 		</button>
 	{:else}
 		<button
 			on:click={toggleForm}
-			class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500 transition duration-150 mb-4"
+			class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition duration-150 mb-4"
 		>
 			When did you stop smoking?
 		</button>
 	{/if}
 
 	{#if isFormVisible}
-		<div class="bg-white p-4 rounded-lg shadow-md mb-4">
-			<h2 class="text-xl font-semibold mb-4">Update Info - When did you stop smoking?</h2>
+		<div class="p-6 rounded-lg mb-4">
+			<h2 class="text-2xl font-semibold mb-4">Update Info - When did you stop smoking?</h2>
 			<div class="mb-4">
-				<label for="quitDate" class="block text-sm font-medium text-gray-700">Quit Date</label>
+				<label for="quitDate" class="block text-sm font-medium">Quit Date</label>
 				<input
 					id="quitDate"
 					type="date"
 					bind:value={quitDate}
-					class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+					class="border sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
 				/>
 			</div>
 			<div class="mb-4">
-				<label for="cigarettesPerDay" class="block text-sm font-medium text-gray-700"
-					>Cigarettes Per Day</label
-				>
+				<label for="cigarettesPerDay" class="block text-sm font-medium">Cigarettes Per Day</label>
 				<input
 					id="cigarettesPerDay"
 					type="number"
 					placeholder="Cigarettes per day"
 					on:input={handleCigarettesInput}
 					bind:value={cigarettesPerDay}
-					class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+					class="border sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
 				/>
 			</div>
 			<button
 				on:click={saveQuitInfo}
-				class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500 transition duration-150"
-				>Save Changes</button
+				class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition duration-150"
 			>
+				Save Changes
+			</button>
 		</div>
 	{/if}
 
 	{#if $quitInfo}
-		<div class="bg-white p-4 rounded-lg shadow-md">
-			<h2 class="text-xl font-semibold mb-4">Savings</h2>
+		<div class="p-6">
+			<h2 class="text-2xl font-semibold mb-4">Savings</h2>
 			<p>You have saved <span class="font-bold">{savings.savedCigarettes}</span> cigarettes.</p>
 			<p>This is equivalent to <span class="font-bold">{savings.savedMoney} kr</span>.</p>
 		</div>

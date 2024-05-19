@@ -26,7 +26,6 @@
 
 {#if userId && isAuthenticated}
 	<div class="container mx-auto py-8">
-		<h1 class="text-3xl text-center mb-4">Live chat and information about your savings !</h1>
 		<QuitInfo {userId} />
 		<Chat />
 	</div>
