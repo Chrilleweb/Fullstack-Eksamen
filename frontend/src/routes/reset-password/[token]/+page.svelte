@@ -50,42 +50,46 @@
 	<title>Reset Your Password</title>
 </svelte:head>
 
-<div class="container mx-auto p-4">
-	<h1 class="text-xl font-bold mb-3">Reset Your Password</h1>
+<div
+	class="container mx-auto py-10 px-6 bg-gradient-to-r from-gray-900 to-green-700 text-white rounded-3xl shadow-lg opacity-80 w-full max-w-sm"
+>
+	<h1 class="text-3xl font-extrabold mb-6 text-center">Reset Your Password</h1>
 	{#if message}
 		{#if message.includes('Password has been reset successfully')}
-			<p class="text-green-500 mb-4">{message}</p>
-			<a class="text-blue-500 mb-4 block" href="/login">Login here!</a>
+			<p class="text-green-400 mb-4 text-center">{message}</p>
+			<a class="text-blue-400 hover:text-blue-600 mb-4 block text-center" href="/login"
+				>Login here!</a
+			>
 		{:else}
-			<p class="text-red-500 mb-4">{message}</p>
+			<p class="text-red-400 mb-4 text-center">{message}</p>
 		{/if}
 	{/if}
 	<form on:submit|preventDefault={resetPassword}>
-		<div class="mb-4">
-			<label for="newPassword" class="block text-sm font-medium text-gray-700">New Password:</label>
+		<div class="mb-6">
+			<label for="newPassword" class="block text-sm font-medium text-gray-300">New Password:</label>
 			<input
 				type="password"
 				id="newPassword"
 				bind:value={newPassword}
-				class="form-input mt-1 block w-full"
+				class="mt-1 block w-full border border-gray-600 rounded-lg p-2.5 bg-gray-700 text-white placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500"
 				required
 			/>
 		</div>
-		<div class="mb-4">
-			<label for="confirmPassword" class="block text-sm font-medium text-gray-700"
+		<div class="mb-6">
+			<label for="confirmPassword" class="block text-sm font-medium text-gray-300"
 				>Confirm New Password:</label
 			>
 			<input
 				type="password"
 				id="confirmPassword"
 				bind:value={confirmPassword}
-				class="form-input mt-1 block w-full"
+				class="mt-1 block w-full border border-gray-600 rounded-lg p-2.5 bg-gray-700 text-white placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500"
 				required
 			/>
 		</div>
 		<button
 			type="submit"
-			class="bg-green-800 hover:bg-green-900 text-white font-bold py-2 px-4 rounded"
+			class="w-full bg-green-700 hover:bg-green-800 text-white font-bold py-2.5 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition duration-150"
 			disabled={processing}
 		>
 			{#if processing}Processing...{:else}Reset Password{/if}
