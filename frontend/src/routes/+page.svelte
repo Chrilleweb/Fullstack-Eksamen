@@ -18,9 +18,13 @@
 </svelte:head>
 
 {#if userRole === 'admin'}
-	<div class="bg-gray-800 opacity-90 p-4 mb-4 rounded-lg z-0">
-		<h1 class="text-2xl font-bold text-gray-100">Admin Dashboard</h1>
-		<a class="text-blue-500 hover:text-blue-700" href="/admin">Access Admin Page</a>
+	<div
+		class="container mx-auto py-10 px-6 bg-gradient-to-r from-gray-900 to-green-700 text-white rounded-3xl shadow-lg opacity-80"
+	>
+		<h1 class="text-3xl font-extrabold text-white">Admin Dashboard</h1>
+		<a class="text-blue-400 hover:text-blue-600 transition duration-150" href="/admin"
+			>Access Admin Page</a
+		>
 	</div>
 {/if}
 
