@@ -132,7 +132,7 @@
 	{#if $quitInfo}
 		<button
 			on:click={toggleForm}
-			class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition duration-150 mb-4"
+			class="bg-green-700 text-white ml-6 px-4 py-2 rounded-md hover:bg-green-700 transition duration-150 mb-4"
 		>
 			{isFormVisible ? 'Hide Quit Info' : 'Update Quit Info'}
 		</button>
@@ -170,7 +170,7 @@
 			</div>
 			<button
 				on:click={saveQuitInfo}
-				class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition duration-150"
+				class="bg-green-700 text-white px-4 py-2 rounded-md hover:bg-green-800 transition duration-150"
 			>
 				Save Changes
 			</button>
