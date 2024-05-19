@@ -40,8 +40,11 @@
 	<meta name="description" content="Sign up" />
 </svelte:head>
 
-<div class="mt-8 mx-auto bg-white p-6 rounded-md shadow-md">
-	<h1 class="text-2xl font-semibold mb-4 text-center">Sign Up</h1>
+<div class="mx-auto bg-gray-900 p-6 rounded-md shadow-md opacity-80 text-white">
+	<div class="flex mb-4">
+		<img src="/svg/logo.svg" alt="QuitSmarter Logo" width="50" height="50" class="mr-11" />
+		<h1 class="text-2xl font-semibold content-center">Sign up</h1>
+	</div>
 	{#if message === 'User registered successfully'}
 		<p class="text-green-500 mb-4">{message}</p>
 		<a class="text-blue-500 mb-4 block" href="/login">Login here!</a>
@@ -50,50 +53,52 @@
 	{/if}
 	<form on:submit={handleSubmit}>
 		<div class="mb-6">
-			<label for="username" class="block text-sm font-medium text-gray-600">Username:</label>
+			<label for="username" class="block text-sm font-medium">Username:</label>
 			<input
 				type="text"
 				id="username"
 				name="username"
 				autocomplete="username"
-				class="form-input mt-1 block w-full border rounded-md p-2"
+				class="border sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+				placeholder="john123"
 				bind:value={username}
 				required
 			/>
 		</div>
 		<div class="mb-4">
-			<label for="email" class="block text-sm font-medium text-gray-600">Email:</label>
+			<label for="email" class="block text-sm font-medium">Email:</label>
 			<input
 				type="email"
 				id="email"
 				name="email"
 				autocomplete="email"
-				class="form-input mt-1 block w-full border rounded-md p-2"
+				class="border sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+				placeholder="name@email.com"
 				bind:value={email}
 				required
 			/>
 		</div>
 		<div class="mb-4">
-			<label for="password" class="block text-sm font-medium text-gray-600">Password:</label>
+			<label for="password" class="block text-sm font-medium">Password:</label>
 			<input
 				type="password"
 				id="password"
 				name="password"
 				autocomplete="new-password"
-				class="form-input mt-1 block w-full border rounded-md p-2"
+				class="border sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+				placeholder="••••••••"
 				bind:value={password}
 				required
 			/>
 		</div>
 		<div class="mb-6">
-			<label for="confirmPassword" class="block text-sm font-medium text-gray-600"
-				>Confirm Password:</label
-			>
+			<label for="confirmPassword" class="block text-sm font-medium">Confirm Password:</label>
 			<input
 				type="password"
 				id="confirmPassword"
 				name="confirmPassword"
-				class="form-input mt-1 block w-full border rounded-md p-2"
+				class="border sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+				placeholder="••••••••"
 				bind:value={confirmPassword}
 				required
 			/>
@@ -101,7 +106,7 @@
 		<a class="text-blue-500 mb-4 block" href="/login">Already have an account? Login here</a>
 		<button
 			type="submit"
-			class="w-full bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400"
+			class="w-full bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition duration-150"
 		>
 			Sign Up
 		</button>
