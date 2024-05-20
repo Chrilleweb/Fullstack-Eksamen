@@ -19,7 +19,7 @@
 
 {#if userRole === 'admin'}
 	<div
-		class="container mx-auto py-10 px-6 bg-gradient-to-r from-gray-900 to-green-700 text-white rounded-3xl shadow-lg opacity-80"
+		class="container mb-10 mx-auto py-10 px-6 bg-gradient-to-r from-gray-900 to-green-700 text-white rounded-3xl shadow-lg opacity-80"
 	>
 		<h1 class="text-3xl font-extrabold text-white">Admin Dashboard</h1>
 		<a class="text-blue-400 hover:text-blue-600 transition duration-150" href="/admin"
@@ -29,7 +29,7 @@
 {/if}
 
 {#if userId && isAuthenticated}
-	<div class="container mx-auto py-8">
+	<div class="container mx-auto pb-8">
 		<QuitInfo {userId} />
 		<Chat />
 	</div>

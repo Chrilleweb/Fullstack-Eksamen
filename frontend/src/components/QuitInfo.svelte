@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';
+	import { fade } from 'svelte/transition';
 
 	type QuitInfoType = {
 		userId: number;
@@ -14,7 +15,15 @@
 	let quitDate = '';
 	let isFormVisible = false;
 	let cigarettesPerDay = 0;
-	let savings = { savedCigarettes: 0, savedMoney: 0 };
+	const savings = writable({ savedCigarettes: 0, savedMoney: 0 });
+	let currency = 'DKK';
+	const conversionRates = {
+		DKK: 1,
+		USD: 0.15,
+		EUR: 0.13,
+		SEK: 1.56,
+		NOK: 1.55
+	};
 
 	function ensureLocalDateString(dateString: string): string {
 		const [year, month, day] = dateString.split('-').map(Number);
@@ -82,44 +91,63 @@
 			});
 			const data = await response.json();
 			if (response.ok) {
-				fetchQuitInfo(); // Re-fetch the latest quit info after saving
+				if (!$quitInfo) {
+					location.reload();
+				}
+				fetchQuitInfo();
 			} else {
 				console.error('Error saving quit info:', data.message);
 			}
 		} catch (error) {
-			console.error('Failed to save quit info:');
+			console.error('Failed to save quit info:', error);
 		}
 	}
 
-	// Calculate saved cigarettes and money
 	function calculateSavings(quitDate: string, cigarettesPerDay: number) {
 		if (!quitDate || !cigarettesPerDay) {
-			savings = { savedCigarettes: 0, savedMoney: 0 };
+			savings.set({ savedCigarettes: 0, savedMoney: 0 });
 			return;
 		}
 
 		const quitDateObj = new Date(quitDate);
 		const now = new Date();
-		const daysSinceStart = Math.floor(
-			(now.getTime() - quitDateObj.getTime()) / (1000 * 60 * 60 * 24)
-		);
-		const partialDayFactor = (now.getHours() * 60 + now.getMinutes()) / (24 * 60); // Fraction of the current day that has passed
+		const minutesSinceStart = (now.getTime() - quitDateObj.getTime()) / (1000 * 60);
+		const minutesPerDay = 24 * 60;
 
-		const savedCigarettes = daysSinceStart * cigarettesPerDay + partialDayFactor * cigarettesPerDay;
-		const savedMoney = (savedCigarettes / 20) * 60; // The cost per cigarette pack (20 cigarettes) is 60 kr
+		const savedCigarettes = (minutesSinceStart / minutesPerDay) * cigarettesPerDay;
+		const savedMoneyInKr = (savedCigarettes / 20) * 60;
 
-		savings = { savedCigarettes: Math.floor(savedCigarettes), savedMoney: Math.floor(savedMoney) };
+		// Type assertion to ensure currency is one of the keys of conversionRates
+		const savedMoney = savedMoneyInKr * conversionRates[currency as keyof typeof conversionRates];
+
+		savings.set({
+			savedCigarettes: parseFloat(savedCigarettes.toFixed(2)),
+			savedMoney: parseFloat(savedMoney.toFixed(2))
+		});
 	}
 
-	// Ensure only numeric input for cigarettes per day
 	function handleCigarettesInput(event: Event) {
 		const input = event.target as HTMLInputElement;
-		input.value = input.value.replace(/\D/g, ''); // Remove any non-digit characters
-		cigarettesPerDay = parseInt(input.value) || 0; // Update the value in the component
+		input.value = input.value.replace(/\D/g, '');
+		cigarettesPerDay = parseInt(input.value) || 0;
 	}
 
-	// Fetch quit info on component mount
-	onMount(fetchQuitInfo);
+	function handleCurrencyChange(event: Event) {
+		currency = (event.target as HTMLSelectElement).value;
+		if ($quitInfo) {
+			calculateSavings($quitInfo.quit_date, $quitInfo.cigarettes_per_day);
+		}
+	}
+
+	onMount(() => {
+		fetchQuitInfo();
+		const interval = setInterval(() => {
+			if ($quitInfo) {
+				calculateSavings($quitInfo.quit_date, $quitInfo.cigarettes_per_day);
+			}
+		}, 1000); // Update savings every 1 second
+		return () => clearInterval(interval);
+	});
 
 	function toggleForm() {
 		isFormVisible = !isFormVisible; // Toggle the form visibility
@@ -180,8 +208,27 @@
 	{#if $quitInfo}
 		<div class="p-6">
 			<h2 class="text-2xl font-semibold mb-4">Savings</h2>
-			<p>You have saved <span class="font-bold">{savings.savedCigarettes}</span> cigarettes.</p>
-			<p>This is equivalent to <span class="font-bold">{savings.savedMoney} kr</span>.</p>
+			<div class="mb-4">
+				<label for="currency" class="block text-sm font-medium">Currency</label>
+				<select
+					id="currency"
+					on:change={handleCurrencyChange}
+					class="border sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-20 p-2.5 bg-gray-700 border-gray-600 text-white focus:ring-blue-500 focus:border-blue-500"
+				>
+					<option value="DKK">DKK</option>
+					<option value="USD">USD</option>
+					<option value="EUR">EUR</option>
+					<option value="SEK">SEK</option>
+					<option value="NOK">NOK</option>
+				</select>
+			</div>
+			<p transition:fade>
+				Saved <span class="font-bold">{$savings.savedCigarettes}</span> cigarettes
+			</p>
+			<p transition:fade>
+				Saved <span class="font-bold">{$savings.savedMoney}</span>
+				{currency}
+			</p>
 		</div>
 	{/if}
 </div>
