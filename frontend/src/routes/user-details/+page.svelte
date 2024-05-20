@@ -73,12 +73,12 @@
 
 {#if userId && isAuthenticated}
 	<div
-		class="bg-gradient-to-r from-gray-900 to-green-700 p-6 rounded-t-lg flex justify-between items-center opacity-80"
+		class="bg-gradient-to-r from-gray-900 to-green-700 p-6 rounded-t-3xl flex justify-between items-center opacity-80"
 	>
 		<h1 class="text-4xl font-extrabold text-white">User Profile</h1>
 		<img src="/svg/user-details.svg" alt="User Icon" class="w-12 h-12" />
 	</div>
-	<div class="bg-gradient-to-r from-gray-900 to-green-700 p-6 rounded-b-lg space-y-6 opacity-80">
+	<div class="bg-gradient-to-r from-gray-900 to-green-700 p-6 rounded-b-3xl space-y-6 opacity-80">
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 			<div class="space-y-4 p-4 rounded-lg">
 				<p

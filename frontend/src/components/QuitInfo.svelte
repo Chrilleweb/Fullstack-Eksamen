@@ -121,8 +121,8 @@
 		const savedMoney = savedMoneyInKr * conversionRates[currency as keyof typeof conversionRates];
 
 		savings.set({
-			savedCigarettes: parseFloat(savedCigarettes.toFixed(2)),
-			savedMoney: parseFloat(savedMoney.toFixed(2))
+			savedCigarettes: parseFloat(savedCigarettes.toFixed(1)),
+			savedMoney: parseFloat(savedMoney.toFixed(1))
 		});
 	}
 
@@ -158,23 +158,40 @@
 	class="container mx-auto py-10 px-6 bg-gradient-to-r from-gray-900 to-green-700 text-white rounded-3xl shadow-lg opacity-80 mb-10"
 >
 	{#if $quitInfo}
-		<button
-			on:click={toggleForm}
-			class="bg-green-700 text-white ml-6 px-4 py-2 rounded-md hover:bg-green-700 transition duration-150 mb-4"
-		>
-			{isFormVisible ? 'Hide Quit Info' : 'Update Quit Info'}
-		</button>
+		<h2 class="text-2xl font-semibold mb-4 ml-6">Savings</h2>
+	{/if}
+
+	{#if $quitInfo}
+		<div class="flex items-center mb-4 ml-6 space-x-4">
+			<select
+				id="currency"
+				on:change={handleCurrencyChange}
+				class="border sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-20 p-2.5 bg-gray-700 border-gray-600 text-white focus:ring-blue-500 focus:border-blue-500"
+			>
+				<option value="DKK">DKK</option>
+				<option value="USD">USD</option>
+				<option value="EUR">EUR</option>
+				<option value="SEK">SEK</option>
+				<option value="NOK">NOK</option>
+			</select>
+			<button
+				on:click={toggleForm}
+				class="bg-green-700 text-white px-4 py-2 rounded-md hover:bg-green-700 transition duration-150"
+			>
+				{isFormVisible ? 'Hide Quit Info' : 'Update Quit Info'}
+			</button>
+		</div>
 	{:else}
 		<button
 			on:click={toggleForm}
-			class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition duration-150 mb-4"
+			class="bg-green-700 text-white px-4 py-2 my-4 rounded-md hover:bg-green-800 transition duration-150 justify-center w-full text-center"
 		>
 			When did you stop smoking?
 		</button>
 	{/if}
 
 	{#if isFormVisible}
-		<div class="p-6 rounded-lg mb-4">
+		<div class="px-6 rounded-lg mb-4">
 			<h2 class="text-2xl font-semibold mb-4">Update Info - When did you stop smoking?</h2>
 			<div class="mb-4">
 				<label for="quitDate" class="block text-sm font-medium">Quit Date</label>
@@ -206,22 +223,7 @@
 	{/if}
 
 	{#if $quitInfo}
-		<div class="p-6">
-			<h2 class="text-2xl font-semibold mb-4">Savings</h2>
-			<div class="mb-4">
-				<label for="currency"></label>
-				<select
-					id="currency"
-					on:change={handleCurrencyChange}
-					class="border sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-20 p-2.5 bg-gray-700 border-gray-600 text-white focus:ring-blue-500 focus:border-blue-500"
-				>
-					<option value="DKK">DKK</option>
-					<option value="USD">USD</option>
-					<option value="EUR">EUR</option>
-					<option value="SEK">SEK</option>
-					<option value="NOK">NOK</option>
-				</select>
-			</div>
+		<div class="px-6">
 			<p class="text-sm md:text-lg" transition:fade>
 				You have saved <span class="font-bold">{$savings.savedCigarettes}</span> cigarettes
 			</p>
