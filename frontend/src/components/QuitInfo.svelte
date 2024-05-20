@@ -209,7 +209,7 @@
 		<div class="p-6">
 			<h2 class="text-2xl font-semibold mb-4">Savings</h2>
 			<div class="mb-4">
-				<label for="currency" class="block text-sm font-medium">Currency</label>
+				<label for="currency"></label>
 				<select
 					id="currency"
 					on:change={handleCurrencyChange}
@@ -222,11 +222,11 @@
 					<option value="NOK">NOK</option>
 				</select>
 			</div>
-			<p transition:fade>
-				Saved <span class="font-bold">{$savings.savedCigarettes}</span> cigarettes
+			<p class="text-sm md:text-lg" transition:fade>
+				You have saved <span class="font-bold">{$savings.savedCigarettes}</span> cigarettes
 			</p>
-			<p transition:fade>
-				Saved <span class="font-bold">{$savings.savedMoney}</span>
+			<p class="text-sm md:text-lg" transition:fade>
+				This is equivalent to <span class="font-bold">{$savings.savedMoney}</span>
 				{currency}
 			</p>
 		</div>
