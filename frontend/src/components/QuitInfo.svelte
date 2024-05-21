@@ -192,7 +192,8 @@
 
 	{#if isFormVisible}
 		<div class="px-6 rounded-lg mb-4">
-			<h2 class="text-2xl font-semibold mb-4">Update Info - When did you stop smoking?</h2>
+			<h2 class="text-2xl font-semibold mb-1">Update Info - When did you stop smoking?</h2>
+			<p class="mb-4">One pack of cigarettes is equivalent to 8 EUR.</p>
 			<div class="mb-4">
 				<label for="quitDate" class="block text-sm font-medium">Quit Date</label>
 				<input
@@ -224,10 +225,10 @@
 
 	{#if $quitInfo}
 		<div class="px-6">
-			<p class="text-sm md:text-lg" transition:fade>
+			<p class="text-sm md:text-xl" transition:fade>
 				You have saved <span class="font-bold">{$savings.savedCigarettes}</span> cigarettes
 			</p>
-			<p class="text-sm md:text-lg" transition:fade>
+			<p class="text-sm md:text-xl" transition:fade>
 				This is equivalent to <span class="font-bold">{$savings.savedMoney}</span>
 				{currency}
 			</p>

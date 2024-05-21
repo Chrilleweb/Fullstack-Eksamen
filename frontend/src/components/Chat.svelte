@@ -87,7 +87,7 @@
 <div
 	class="container mx-auto py-10 px-6 bg-gradient-to-r from-gray-900 to-green-700 text-white rounded-3xl shadow-lg opacity-80"
 >
-	<div class="chat-container flex flex-col h-96 overflow-hidden rounded-lg">
+	<div class="chat-container flex flex-col h-72 overflow-hidden rounded-lg">
 		<div class="header bg-gray-800 opacity-80 text-white text-lg font-semibold p-3">Live Chat</div>
 		<ul
 			bind:this={messageContainer}

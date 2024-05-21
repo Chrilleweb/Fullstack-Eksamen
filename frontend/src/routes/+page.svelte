@@ -29,7 +29,7 @@
 {/if}
 
 {#if userId && isAuthenticated}
-	<div class="container mx-auto pb-8">
+	<div class="container mx-auto">
 		<QuitInfo {userId} />
 		<Chat />
 	</div>

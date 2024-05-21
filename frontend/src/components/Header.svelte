@@ -32,7 +32,7 @@
 </script>
 
 {#if allowedPages.includes($page.url.pathname) && currentUsername && isAuthenticated}
-	<header class="py-4 md:sticky top-0 z-50">
+	<header class="pt-4 md:sticky top-0 z-50">
 		<nav class="flex flex-col md:flex-row justify-between items-center py-4 px-10">
 			<div class="flex items-center">
 				<a href="/" class="flex items-center text-2xl font-bold text-white">
