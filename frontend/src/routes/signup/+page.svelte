@@ -4,6 +4,7 @@
 	let password: string = '';
 	let confirmPassword: string = '';
 	let message: string = '';
+	let loading: boolean = false; // Loading state
 
 	async function handleSubmit(event: Event) {
 		event.preventDefault();
@@ -12,6 +13,8 @@
 			message = "Passwords don't match";
 			return;
 		}
+
+		loading = true; // Start loading
 
 		try {
 			const response = await fetch('http://localhost:8080/api/signup', {
@@ -31,6 +34,8 @@
 			message = data.message;
 		} catch (error) {
 			message = (error as Error).message;
+		} finally {
+			loading = false; // End loading
 		}
 	}
 </script>
@@ -63,6 +68,7 @@
 				placeholder="john123"
 				bind:value={username}
 				required
+				disabled={loading}
 			/>
 		</div>
 		<div class="mb-4">
@@ -76,6 +82,7 @@
 				placeholder="name@email.com"
 				bind:value={email}
 				required
+				disabled={loading}
 			/>
 		</div>
 		<div class="mb-4">
@@ -89,6 +96,7 @@
 				placeholder="••••••••"
 				bind:value={password}
 				required
+				disabled={loading}
 			/>
 		</div>
 		<div class="mb-6">
@@ -101,14 +109,20 @@
 				placeholder="••••••••"
 				bind:value={confirmPassword}
 				required
+				disabled={loading}
 			/>
 		</div>
 		<a class="text-blue-500 mb-4 block" href="/login">Already have an account? Login here</a>
 		<button
 			type="submit"
 			class="w-full bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition duration-150"
+			disabled={loading}
 		>
-			Sign Up
+			{#if loading}
+				<span>Loading...</span>
+			{:else}
+				Sign Up
+			{/if}
 		</button>
 	</form>
 </div>

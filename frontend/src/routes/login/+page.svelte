@@ -5,9 +5,11 @@
 	let username: string = '';
 	let password: string = '';
 	let message: string = '';
+	let loading: boolean = false; // Loading state
 
 	async function handleSubmit(event: Event) {
 		event.preventDefault();
+		loading = true; // Start loading
 
 		try {
 			const response = await fetch('http://localhost:8080/api/login', {
@@ -31,6 +33,8 @@
 			goto('/');
 		} catch (error) {
 			console.error('Login failed:', error);
+		} finally {
+			loading = false; // End loading
 		}
 	}
 
@@ -64,6 +68,7 @@
 				placeholder="john123"
 				bind:value={username}
 				required
+				disabled={loading}
 			/>
 		</div>
 		<div class="mb-4">
@@ -77,6 +82,7 @@
 				placeholder="••••••••"
 				bind:value={password}
 				required
+				disabled={loading}
 			/>
 		</div>
 		<div class="text-center mb-4">
@@ -90,8 +96,13 @@
 		<button
 			type="submit"
 			class="w-full bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition duration-150"
+			disabled={loading}
 		>
-			Login
+			{#if loading}
+				<span>Loading...</span>
+			{:else}
+				Login
+			{/if}
 		</button>
 	</form>
 </div>
