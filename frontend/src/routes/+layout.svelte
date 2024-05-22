@@ -13,7 +13,7 @@
 	</main>
 
 	<footer>
-		<p>@ {year} Chrilleweb.</p>
+		<p>@ {year} QuitSmarter.</p>
 	</footer>
 </div>
 
@@ -40,12 +40,12 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding-bottom: 12px;
+		padding: 12px;
 	}
 
 	@media (min-width: 480px) {
 		footer {
-			padding-bottom: 12px 0;
+			padding: 12px 0;
 		}
 	}
 </style>

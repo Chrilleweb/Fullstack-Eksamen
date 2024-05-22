@@ -5,12 +5,12 @@ const User = require("../models/User");
 
 // Configure Nodemailer to use Mailgun SMTP for sending emails
 let transporter = nodemailer.createTransport({
-  host: "smtp.mailgun.org",
+  service: "gmail",
+  host: "smtp.gmail.com",
   port: 587,
-  secure: false,
   auth: {
-    user: "postmaster@sandbox396c2341a93745168ba720519280e9a3.mailgun.org",
-    pass: process.env.MAILGUN_PASS,
+    user: "quitsmarter@gmail.com",
+    pass: process.env.GMAIL_PASS,
   },
 });
 
@@ -24,21 +24,17 @@ const sendResetEmail = async (req, res) => {
     }
 
     const token = crypto.randomBytes(20).toString("hex");
-    const expiration = new Date(Date.now() + 3600000); // Token expires in 1 hour
+    const expiration = new Date(Date.now() + 3600000);
+
+    const username = user.username;// Token expires in 1 hour
 
     await User.saveResetToken(user.id, token, expiration);
 
     const resetLink = `http://localhost:5173/reset-password/${token}`;
     const emailHtml = `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Password Reset</title>
-    </head>
+    <html>
     <body>
-        <p>Hello,</p>
+        <p>Hello ${username},</p>
         <p>You requested a password reset. Please click the link below to set a new password. If you did not request this, please ignore this email.</p>
         <p><a href="${resetLink}" target="_blank">Reset Password</a></p>
         <p>Thank you!</p>
@@ -46,7 +42,7 @@ const sendResetEmail = async (req, res) => {
     </html>`;
 
     await transporter.sendMail({
-      from: "\"Chrille\" <postmaster@sandbox396c2341a93745168ba720519280e9a3.mailgun.org>",
+      from: "\"QuitSmarter\" quitsmarter@gmail.com",
       to: email,
       subject: "Password Reset",
       html: emailHtml,

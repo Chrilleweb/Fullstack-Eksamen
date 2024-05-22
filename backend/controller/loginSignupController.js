@@ -5,12 +5,12 @@ const User = require("../models/User");
 
 // Configure Nodemailer to use Mailgun SMTP for sending emails
 let transporter = nodemailer.createTransport({
-  host: "smtp.mailgun.org",
+  service: "gmail",
+  host: "smtp.gmail.com",
   port: 587,
-  secure: false,
   auth: {
-    user: "postmaster@sandbox396c2341a93745168ba720519280e9a3.mailgun.org",
-    pass: process.env.MAILGUN_PASS,
+    user: "quitsmarter@gmail.com",
+    pass: process.env.GMAIL_PASS,
   },
 });
 
@@ -73,16 +73,17 @@ const signup_post = async (req, res) => {
     const welcomeEmailHtml = `
     <html>
       <body>
-        <h1>Welcome to Our Service!</h1>
         <p>Hi ${username},</p>
-        <p>Thank you for signing up. We are glad to have you on board!</p>
+        <p>Thank you for signing up. We are glad to have you on board.</p>
+        <p>Let's make your smoke-free journey successful together!</p>
+        <p>Best regards,<br>The QuitSmarter Team</p>
       </body>
     </html>`;
 
     await transporter.sendMail({
-      from: `"Welcome ${username}" <postmaster@sandbox396c2341a93745168ba720519280e9a3.mailgun.org>`,
+      from: "\"QuitSmarter\" quitsmarter@gmail.com",
       to: email,
-      subject: "Welcome to Our Service!",
+      subject: "Welcome to QuitSmarter!",
       html: welcomeEmailHtml,
     });
 

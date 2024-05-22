@@ -32,10 +32,10 @@
 </script>
 
 {#if allowedPages.includes($page.url.pathname) && currentUsername && isAuthenticated}
-	<header class="pt-4 md:sticky top-0 z-50">
-		<nav class="flex flex-col md:flex-row justify-between items-center py-4 px-10">
+	<header class="pt-4 top-0 z-50">
+		<nav class="flex flex-col md:flex-row justify-between items-center py-4 px-16">
 			<div class="flex items-center">
-				<a href="/" class="flex items-center text-2xl font-bold text-white">
+				<a href="/" class="flex items-center text-3xl font-bold text-white">
 					<img src="/svg/logo.svg" alt="QuitSmarter Logo" width="50" height="50" class="mr-2" />
 					QuitSmarter
 				</a>
