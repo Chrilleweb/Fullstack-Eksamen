@@ -43,7 +43,7 @@
 			return;
 		}
 		try {
-			const response = await fetch(`http://localhost:8080/auth/quit-info/${userId}`, {
+			const response = await fetch(import.meta.env.VITE_BACKEND_URL +`/auth/quit-info/${userId}`, {
 				method: 'GET',
 				credentials: 'include'
 			});
@@ -73,8 +73,8 @@
 
 		const method = $quitInfo ? 'PUT' : 'POST';
 		const url = $quitInfo
-			? `http://localhost:8080/auth/quit-info/${userId}`
-			: 'http://localhost:8080/auth/quit-info';
+			? import.meta.env.VITE_BACKEND_URL + `/auth/quit-info/${userId}`
+			: import.meta.env.VITE_BACKEND_URL + '/auth/quit-info';
 
 		try {
 			const response = await fetch(url, {

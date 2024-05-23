@@ -1,6 +1,6 @@
 export const load = async (serverLoadEvent) => {
 	const { fetch } = serverLoadEvent;
-	const response = await fetch('http://localhost:8080/auth/home');
+	const response = await fetch(import.meta.env.VITE_BACKEND_URL + '/auth/home');
 	const data = await response.json();
 	const userName: string = data.userName;
 	const userEmail: string = data.email;

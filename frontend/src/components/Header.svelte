@@ -11,12 +11,13 @@
 
 	async function logout() {
 		try {
-			const url = 'http://localhost:8080/api/logout';
+			const url = import.meta.env.VITE_BACKEND_URL + '/api/logout';
 			const response = await fetch(url, {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json'
-				}
+				},
+				credentials: 'include'
 			});
 
 			if (response.ok) {

@@ -23,7 +23,7 @@
 		processing = true;
 
 		try {
-			const response = await fetch(`http://localhost:8080/api/reset-password/${token}`, {
+			const response = await fetch(import.meta.env.VITE_BACKEND_URL + `/api/reset-password/${token}`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'

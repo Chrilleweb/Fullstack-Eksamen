@@ -1,7 +1,7 @@
 export const load = async (serverLoadEvent) => {
 	const { fetch } = serverLoadEvent;
-	const response = await fetch('http://localhost:8080/auth/admin');
-	const responseUsers = await fetch('http://localhost:8080/auth/admin/users');
+	const response = await fetch(import.meta.env.VITE_BACKEND_URL + '/auth/admin');
+	const responseUsers = await fetch(import.meta.env.VITE_BACKEND_URL + '/auth/admin/users');
 	const data = await response.json();
 	const dataUsers = await responseUsers.json();
 	const userName: string = data.userName;

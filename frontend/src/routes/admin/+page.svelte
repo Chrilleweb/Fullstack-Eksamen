@@ -25,7 +25,7 @@
 	async function deleteUser() {
 		if (userIdToDelete !== null) {
 			try {
-				const url = `http://localhost:8080/auth/admin/${userIdToDelete}`;
+				const url = import.meta.env.VITE_BACKEND_URL + `/auth/admin/${userIdToDelete}`;
 				const response = await fetch(url, {
 					method: 'DELETE',
 					credentials: 'include'
@@ -54,7 +54,7 @@
 
 	async function updateRole(id: number, role: string) {
 		try {
-			const url = `http://localhost:8080/auth/admin/${id}`;
+			const url = import.meta.env.VITE_BACKEND_URL + `/auth/admin/${id}`;
 			const response = await fetch(url, {
 				method: 'PUT',
 				headers: {

@@ -17,7 +17,7 @@
 
 	async function logout() {
 		try {
-			const url = 'http://localhost:8080/api/logout';
+			const url = import.meta.env.VITE_BACKEND_URL + '/api/logout';
 			const response = await fetch(url, {
 				method: 'GET',
 				headers: {
@@ -43,7 +43,7 @@
 	async function deleteUser() {
 		if (userIdToDelete !== null) {
 			try {
-				const url = `http://localhost:8080/auth/home/delete-user`;
+				const url = import.meta.env.VITE_BACKEND_URL + `/auth/home/delete-user`;
 				const response = await fetch(url, {
 					method: 'DELETE',
 					credentials: 'include'

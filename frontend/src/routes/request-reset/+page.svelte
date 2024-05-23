@@ -12,7 +12,7 @@
 		message.set('');
 
 		try {
-			const response = await fetch('http://localhost:8080/api/request-reset', {
+			const response = await fetch(import.meta.env.VITE_BACKEND_URL + '/api/request-reset', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'

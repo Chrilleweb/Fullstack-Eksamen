@@ -17,7 +17,7 @@
 	let messageContainer: HTMLElement;
 
 	onMount(() => {
-		socket = io('http://localhost:8080');
+		socket = io(import.meta.env.VITE_BACKEND_URL);
 
 		socket.on('chat message', (data: any) => {
 			messages.update((current) => [...current, `${data.username}: ${data.message}`]);
