@@ -37,7 +37,7 @@ const sendResetEmail = async (req, res) => {
         <p>Hello ${username},</p>
         <p>You requested a password reset. Please click the link below to set a new password. If you did not request this, please ignore this email.</p>
         <p><a href="${resetLink}" target="_blank">Reset Password</a></p>
-        <p>Thank you!</p>
+        <p>Best regards,<br>The QuitSmarter Team</p>
     </body>
     </html>`;
 
