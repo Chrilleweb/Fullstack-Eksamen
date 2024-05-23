@@ -139,6 +139,13 @@
 		}
 	}
 
+	function formatNumber(number: number): string {
+		return number.toLocaleString('de-DE', {
+			minimumFractionDigits: 1,
+			maximumFractionDigits: 1
+		});
+	}
+
 	onMount(() => {
 		fetchQuitInfo();
 		const interval = setInterval(() => {
@@ -226,10 +233,10 @@
 	{#if $quitInfo}
 		<div class="px-6">
 			<p class="text-sm md:text-xl" transition:fade>
-				You have saved <span class="font-bold">{$savings.savedCigarettes}</span> cigarettes
+				You have saved <span class="font-bold">{formatNumber($savings.savedCigarettes)}</span> cigarettes
 			</p>
 			<p class="text-sm md:text-xl" transition:fade>
-				This is equivalent to <span class="font-bold">{$savings.savedMoney}</span>
+				This is equivalent to <span class="font-bold">{formatNumber($savings.savedMoney)}</span>
 				{currency}
 			</p>
 		</div>
