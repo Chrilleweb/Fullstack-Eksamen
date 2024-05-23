@@ -19,6 +19,14 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"], // Headers that the origin can send
 }));
 
+// Explicitly handle preflight requests
+app.options('*', cors({
+  origin: process.env.FRONTEND_URL,
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
 app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
