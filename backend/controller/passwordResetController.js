@@ -30,7 +30,7 @@ const sendResetEmail = async (req, res) => {
 
     await User.saveResetToken(user.id, token, expiration);
 
-    const resetLink = `http://localhost:5173/reset-password/${token}`;
+    const resetLink = `${process.env.FRONTEND_URL}/reset-password/${token}`;
     const emailHtml = `
     <html>
     <body>

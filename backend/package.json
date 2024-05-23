@@ -5,8 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js",
-    "test": "jest",
+    "dev": "NODE_ENV=development nodemon app.js",
+    "test": "NODE_ENV=development jest",
+    "test:prod": "NODE_ENV=production jest",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
@@ -14,14 +15,14 @@
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
+    "dotenv": "^8.6.0",
     "express": "^4.17.1",
     "express-rate-limit": "^7.2.0",
     "express-session": "^1.18.0",
     "express-validator": "^6.9.2",
     "helmet": "^7.1.0",
     "jsonwebtoken": "^8.5.1",
-    "mysql": "^2.18.1",
+    "mysql2": "^3.9.7",
     "nodemailer": "^6.9.13",
     "socket.io": "^4.7.5"
   },

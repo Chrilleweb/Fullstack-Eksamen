@@ -45,7 +45,6 @@ describe("Quit Info Endpoints", () => {
       });
     expect(response.statusCode).toBe(200);
     cookie = response.headers["set-cookie"].join(";");
-    console.log("Retrieved cookie:", cookie); // Print cookie to console
   });
 
   test("Retrieve quit information", async () => {
