@@ -22,6 +22,9 @@ app.use(cors({
 app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
+
+const isProduction = process.env.NODE_ENV === 'production';
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -29,10 +32,11 @@ app.use(
     saveUninitialized: true,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24, // Session duration in milliseconds (e.g., 1 day)
-      secure: false, // Set to true if using HTTPS
+      secure: isProduction, // Set to true if using HTTPS
       httpOnly: true,
+      sameSite: isProduction ? 'none' : 'lax', // Adjust based on environment
     },
-  }),
+  })
 );
 
 const limiter = rateLimit({
