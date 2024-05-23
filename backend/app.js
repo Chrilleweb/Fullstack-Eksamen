@@ -12,13 +12,11 @@ require("dotenv").config();
 
 const app = express();
 
-app.use(cors());
-
-app.options('*', cors({
-  origin: process.env.FRONTEND_URL,
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"]
+app.use(cors({
+  origin: "http://localhost:5173", // Allow this origin to access the server
+  credentials: true, // Allow sending of cookies with requests from this origin
+  methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods from the origin
+  allowedHeaders: ["Content-Type", "Authorization"], // Headers that the origin can send
 }));
 
 app.use(helmet());
