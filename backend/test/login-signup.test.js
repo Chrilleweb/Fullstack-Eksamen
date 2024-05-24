@@ -6,7 +6,6 @@ const pool = require("../config/dbConfig");
 require("dotenv").config();
 
 process.env.JWT_SECRET = "my_test_jwt_secret";
-process.env.SESSION_SECRET = "my_test_session_secret";
 
 // Promisify pool.query for use with async/await
 const query = util.promisify(pool.query).bind(pool);
@@ -42,7 +41,6 @@ afterAll(async () => {
 });
 
 describe("Login and Signup logic", () => {
-
   // test successful signup
   test("should register a new user", async () => {
     await request(app).post("/api/signup")
@@ -95,7 +93,6 @@ describe("Login and Signup logic", () => {
       })
       .expect(400);
   });
-
 
   // test signup validation username should be 3 or more characters
   test("should not register a user with username less than 3 characters", async () => {
@@ -179,7 +176,7 @@ describe("Login and Signup logic", () => {
 });
 
 describe("Authentication Flow", () => {
-  let cookie;
+  let token;
 
   test("Login and Logout Flow", async () => {
     // Step 1: Login to obtain a token
@@ -191,32 +188,27 @@ describe("Authentication Flow", () => {
       })
       .expect(200);
 
-    // Step 2: Capture the "Set-Cookie" header (token in cookie)
-    cookie = loginResponse.headers["set-cookie"].join(";");
+    // Step 2: Capture the token from the response body
+    token = loginResponse.body.token;
 
-    // Verify login was successful and cookie is set
-    expect(cookie).toContain("token");
+    // Verify login was successful and token is set
+    expect(token).toBeDefined();
 
     // Step 3: Perform logout
     const logoutResponse = await request(app)
       .get("/api/logout")
-      .set("Cookie", cookie)
+      .set("Authorization", `Bearer ${token}`)
       .expect(200);
 
     // Step 4: Verify logout response
     expect(logoutResponse.body.message).toEqual("User logged out successfully");
-
-    // Verify that the "Set-Cookie" header aims to clear the token cookie
-    expect(logoutResponse.headers["set-cookie"]).toBeTruthy();
-    const cookieAfterLogout = logoutResponse.headers["set-cookie"].join(";");
-    expect(cookieAfterLogout).toContain("token=;");
   });
 
   // Test access to home page with valid authentication
   test("Access to home page with valid authentication", async () => {
     const response = await request(app)
       .get("/auth/home")
-      .set("Cookie", cookie)
+      .set("Authorization", `Bearer ${token}`)
       .expect(200);
 
     expect(response.body).toBeDefined();
@@ -233,7 +225,7 @@ describe("Authentication Flow", () => {
   test("User role should be user when logged in to home page", async () => {
     const response = await request(app)
       .get("/auth/home")
-      .set("Cookie", cookie)
+      .set("Authorization", `Bearer ${token}`)
       .expect(200);
 
     expect(response.body.role).toEqual("user");
@@ -243,7 +235,7 @@ describe("Authentication Flow", () => {
   test("should get email from logged in user", async () => {
     const response = await request(app)
       .get("/auth/home")
-      .set("Cookie", cookie)
+      .set("Authorization", `Bearer ${token}`)
       .expect(200);
 
     expect(response.body.email).toEqual("example@mail.com");
@@ -251,7 +243,7 @@ describe("Authentication Flow", () => {
 });
 
 describe("Authentication Flow admin", () => {
-  let cookie;
+  let token;
 
   test("Admin Flow", async () => {
     // Step 1: Login to obtain a token
@@ -264,16 +256,16 @@ describe("Authentication Flow admin", () => {
       })
       .expect(200);
 
-    // Step 2: Capture the "Set-Cookie" header (token in cookie)
-    cookie = loginResponse.headers["set-cookie"].join(";");
+    // Step 2: Capture the token from the response body
+    token = loginResponse.body.token;
 
-    // Verify login was successful and cookie is set
-    expect(cookie).toContain("token");
+    // Verify login was successful and token is set
+    expect(token).toBeDefined();
 
     // Step 3: Access the admin dashboard
     const response = await request(app)
       .get("/auth/admin")
-      .set("Cookie", cookie)
+      .set("Authorization", `Bearer ${token}`)
       .expect(200);
 
     // Step 4: Verify the response
@@ -291,7 +283,7 @@ describe("Authentication Flow admin", () => {
   test("Access to admin page with invalid authentication should be denied", async () => {
     await request(app)
       .get("/auth/admin")
-      .set("Cookie", "token=invalidtoken")
+      .set("Authorization", "Bearer invalidtoken")
       .expect(401);
   });
 
@@ -306,16 +298,16 @@ describe("Authentication Flow admin", () => {
       })
       .expect(200);
 
-    // Step 2: Capture the "Set-Cookie" header (token in cookie)
-    cookie = loginResponse.headers["set-cookie"].join(";");
+    // Step 2: Capture the token from the response body
+    const userToken = loginResponse.body.token;
 
-    // Verify login was successful and cookie is set
-    expect(cookie).toContain("token");
+    // Verify login was successful and token is set
+    expect(userToken).toBeDefined();
 
     // Step 3: Access the admin dashboard
     await request(app)
       .get("/auth/admin")
-      .set("Cookie", cookie)
+      .set("Authorization", `Bearer ${userToken}`)
       .expect(403);
   });
 
@@ -330,6 +322,7 @@ describe("Authentication Flow admin", () => {
       .expect(200);
   });
 });
+
 
 
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Cookies from 'js-cookie';
+	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { isAuthenticated, user } from '../auth/auth';
 	const allowedPages = ['/', '/admin', '/user-details', '/request-reset'];
@@ -16,15 +16,14 @@
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json'
-				},
-				credentials: 'include'
+				}
 			});
 
 			if (response.ok) {
-				Cookies.remove('token');
+				localStorage.removeItem('token');
 				isAuthenticated.set(false);
 				user.set('');
-				location.reload();
+				goto('/login');
 			}
 		} catch (error) {
 			console.error('Fetch error:', error);

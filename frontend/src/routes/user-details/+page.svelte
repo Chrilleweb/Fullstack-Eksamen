@@ -3,7 +3,6 @@
 	import ErrorAuth from '../../components/ErrorAuth.svelte';
 	import Confirmation from '../../components/Confirmation.svelte';
 	import { goto } from '$app/navigation';
-	import Cookies from 'js-cookie';
 	import BackArrow from '../../components/backArrow.svelte';
 	export let data;
 	const username = data.props.userName;
@@ -26,7 +25,7 @@
 			});
 
 			if (response.ok) {
-				Cookies.remove('token');
+				localStorage.removeItem('token');
 				isAuthenticated.set(false);
 				goto('/');
 			}
@@ -46,7 +45,10 @@
 				const url = import.meta.env.VITE_BACKEND_URL + `/auth/home/delete-user`;
 				const response = await fetch(url, {
 					method: 'DELETE',
-					credentials: 'include'
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${localStorage.getItem('token')}`
+					}
 				});
 
 				if (response.ok) {

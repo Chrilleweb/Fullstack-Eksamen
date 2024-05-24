@@ -117,11 +117,6 @@ const login_post = async (req, res) => {
       { expiresIn: "1d" },
     );
 
-    res.cookie("token", token, {
-      maxAge: 1000 * 60 * 60 * 24, // Cookie expiration time (e.g., 1 day)
-      httpOnly: true,
-    });
-
     // Send the token in the response
     res.status(200).json({ token });
   } catch (error) {
@@ -131,8 +126,6 @@ const login_post = async (req, res) => {
 };
 
 const logout_get = (req, res) => {
-  res.clearCookie("token");
-  req.session.destroy();
   res.status(200).json({ message: "User logged out successfully" });
 };
 

@@ -28,7 +28,10 @@
 				const url = import.meta.env.VITE_BACKEND_URL + `/auth/admin/${userIdToDelete}`;
 				const response = await fetch(url, {
 					method: 'DELETE',
-					credentials: 'include'
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${localStorage.getItem('token')}`
+					}
 				});
 
 				if (response.ok) {
@@ -58,10 +61,10 @@
 			const response = await fetch(url, {
 				method: 'PUT',
 				headers: {
-					'Content-Type': 'application/json'
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${localStorage.getItem('token')}`
 				},
-				body: JSON.stringify({ role }),
-				credentials: 'include'
+				body: JSON.stringify({ role })
 			});
 
 			if (response.ok) {

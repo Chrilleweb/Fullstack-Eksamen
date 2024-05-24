@@ -33,10 +33,10 @@ afterAll(async () => {
 });
 
 describe("Quit Info Endpoints", () => {
-  let cookie; // This will store the cookie for authenticated requests
+  let token; // This will store the JWT token for authenticated requests
 
   beforeAll(async () => {
-    // Login to obtain a cookie
+    // Login to obtain a token
     const response = await request(app)
       .post("/api/login")
       .send({
@@ -44,13 +44,13 @@ describe("Quit Info Endpoints", () => {
         password: user.password,
       });
     expect(response.statusCode).toBe(200);
-    cookie = response.headers["set-cookie"].join(";");
+    token = response.body.token; // Extract the token from the response body
   });
 
   test("Retrieve quit information", async () => {
     const response = await request(app)
       .get(`/auth/quit-info/${user.userId}`)
-      .set("Cookie", cookie);
+      .set("Authorization", `Bearer ${token}`);
     expect(response.statusCode).toBe(200);
     expect(response.body).toHaveProperty("quit_date");
     expect(response.body).toHaveProperty("cigarettes_per_day");
@@ -61,7 +61,7 @@ describe("Quit Info Endpoints", () => {
     newquitDate.setDate(newquitDate.getDate() - 1); // Yesterday
     const response = await request(app)
       .post("/auth/quit-info")
-      .set("Cookie", cookie)
+      .set("Authorization", `Bearer ${token}`)
       .send({
         userId: user.userId,
         quit_date: newquitDate.toISOString().slice(0, 10),
@@ -76,7 +76,7 @@ describe("Quit Info Endpoints", () => {
     updatedquitDate.setDate(updatedquitDate.getDate() - 2); // Two days ago
     const response = await request(app)
       .put(`/auth/quit-info/${user.userId}`)
-      .set("Cookie", cookie)
+      .set("Authorization", `Bearer ${token}`)
       .send({
         quit_date: updatedquitDate.toISOString().slice(0, 10),
         cigarettes_per_day: 10,
@@ -85,4 +85,5 @@ describe("Quit Info Endpoints", () => {
     expect(response.body.message).toEqual("Quit info updated successfully");
   });
 });
+
 

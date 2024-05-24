@@ -36,6 +36,7 @@
 
 <svelte:head>
 	<title>Reset Password</title>
+	<meta name="description" content="Request Reset Password" />
 </svelte:head>
 <div class="container mx-auto py-10 max-w-sm">
 	<div

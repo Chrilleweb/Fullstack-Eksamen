@@ -23,13 +23,16 @@
 		processing = true;
 
 		try {
-			const response = await fetch(import.meta.env.VITE_BACKEND_URL + `/api/reset-password/${token}`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({ newPassword })
-			});
+			const response = await fetch(
+				import.meta.env.VITE_BACKEND_URL + `/api/reset-password/${token}`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ newPassword })
+				}
+			);
 
 			const data = await response.json();
 
@@ -48,6 +51,7 @@
 
 <svelte:head>
 	<title>Reset Your Password</title>
+	<meta name="description" content="Reset Your Password" />
 </svelte:head>
 
 <div

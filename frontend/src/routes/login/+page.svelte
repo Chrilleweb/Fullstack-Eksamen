@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import Cookies from 'js-cookie';
 	import { isAuthenticated } from '../../auth/auth';
 	let username: string = '';
 	let password: string = '';
@@ -20,6 +19,11 @@
 				body: JSON.stringify({ username, password })
 			});
 
+			if (response.status === 429) {
+				message = "Too many attempts. Try again later.";
+				throw new Error(message);
+			}
+
 			const data = await response.json();
 
 			message = data.message;
@@ -28,7 +32,7 @@
 				throw new Error(data.message || 'Login failed');
 			}
 
-			Cookies.set('token', data.token, { expires: 1 });
+			localStorage.setItem('token', data.token);
 			isAuthenticated.set(true);
 			goto('/');
 		} catch (error) {

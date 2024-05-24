@@ -1,28 +1,28 @@
-import Cookies from 'js-cookie';
-const token = Cookies.get('token');
 export const load = async (serverLoadEvent) => {
 	const { fetch } = serverLoadEvent;
+	let token = null;
+
+	if (typeof localStorage !== 'undefined') {
+		token = localStorage.getItem('token');
+	}
+
 	const response = await fetch(import.meta.env.VITE_BACKEND_URL + '/auth/home', {
-		method: 'GET',
 		headers: {
-		  'Content-Type': 'application/json',
-		  'Authorization': `Bearer ${token}`
-		},
-		credentials: 'include' // Ensure cookies are included in the request
-	  });
+			Authorization: `Bearer ${token}`
+		}
+	});
 	const data = await response.json();
 	const userName: string = data.userName;
+	const userEmail: string = data.email;
 	const userId: number = data.userId;
 	const role: string = data.role;
-	console.log(response);
-	console.log(data);
-	console.log(token);
 	return {
 		props: {
 			userId,
 			userName,
+			userEmail,
 			role
 		}
 	};
 };
-export const ssr = true;
+export const prerender = true;

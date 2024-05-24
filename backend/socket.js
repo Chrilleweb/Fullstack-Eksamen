@@ -6,7 +6,6 @@ function initializeSocket(server) {
     cors: {
       origin: "*",
       methods: ["GET", "POST"],
-      credentials: true,
       allowedHeaders: ["Content-Type"],
     },
   });

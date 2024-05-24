@@ -1,15 +1,15 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 let envPath;
-if (process.env.NODE_ENV === 'development') {
-  envPath = path.resolve(__dirname, '../.env.local');
+if (process.env.NODE_ENV === "development") {
+  envPath = path.resolve(__dirname, "../.env.local");
 } else {
-  envPath = path.resolve(__dirname, '../.env');
+  envPath = path.resolve(__dirname, "../.env");
 }
 
 if (fs.existsSync(envPath)) {
-  require('dotenv').config({ path: envPath });
+  require("dotenv").config({ path: envPath });
 }
 
 const mysql = require("mysql2");

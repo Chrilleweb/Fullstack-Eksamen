@@ -24,6 +24,7 @@
 		SEK: 1.56,
 		NOK: 1.55
 	};
+	let loading: boolean = false;
 
 	function ensureLocalDateString(dateString: string): string {
 		const [year, month, day] = dateString.split('-').map(Number);
@@ -43,9 +44,12 @@
 			return;
 		}
 		try {
-			const response = await fetch(import.meta.env.VITE_BACKEND_URL +`/auth/quit-info/${userId}`, {
+			const response = await fetch(import.meta.env.VITE_BACKEND_URL + `/auth/quit-info/${userId}`, {
 				method: 'GET',
-				credentials: 'include'
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${localStorage.getItem('token')}`
+				}
 			});
 			const data = await response.json();
 			if (response.ok) {
@@ -70,6 +74,7 @@
 			console.error('Start date is empty');
 			return;
 		}
+		loading = true; // Start loading
 
 		const method = $quitInfo ? 'PUT' : 'POST';
 		const url = $quitInfo
@@ -79,9 +84,9 @@
 		try {
 			const response = await fetch(url, {
 				method,
-				credentials: 'include',
 				headers: {
-					'Content-Type': 'application/json'
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${localStorage.getItem('token')}`
 				},
 				body: JSON.stringify({
 					userId,
@@ -100,6 +105,8 @@
 			}
 		} catch (error) {
 			console.error('Failed to save quit info:', error);
+		} finally {
+			loading = false; // End loading
 		}
 	}
 
@@ -225,7 +232,11 @@
 				on:click={saveQuitInfo}
 				class="bg-green-700 text-white px-4 py-2 rounded-md hover:bg-green-800 transition duration-150"
 			>
-				Save Changes
+				{#if loading}
+					<span>Loading...</span>
+				{:else}
+					Save Changes
+				{/if}
 			</button>
 		</div>
 	{/if}
