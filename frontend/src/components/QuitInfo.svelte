@@ -243,10 +243,10 @@
 
 	{#if $quitInfo}
 		<div class="px-6">
-			<p class="text-sm md:text-xl" transition:fade>
+			<p class="md:text-xl" transition:fade>
 				You have saved <span class="font-bold">{formatNumber($savings.savedCigarettes)}</span> cigarettes
 			</p>
-			<p class="text-sm md:text-xl" transition:fade>
+			<p class="md:text-xl" transition:fade>
 				This is equivalent to <span class="font-bold">{formatNumber($savings.savedMoney)}</span>
 				{currency}
 			</p>
