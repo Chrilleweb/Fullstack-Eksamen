@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
+	import { loadingBar } from '../../../stores/loadingStore';
 
 	let token: string;
 	let newPassword: string;
 	let confirmPassword: string;
 	let message: string;
-	let processing = false;
+	let loading: boolean = false;
 
 	onMount(() => {
 		token = $page.params.token;
@@ -14,13 +15,13 @@
 
 	async function resetPassword(event: Event) {
 		event.preventDefault();
+		loading = true;
+		loadingBar.set(true);
 
 		if (newPassword !== confirmPassword) {
 			message = "Passwords don't match";
 			return;
 		}
-
-		processing = true;
 
 		try {
 			const response = await fetch(
@@ -44,7 +45,8 @@
 		} catch (error) {
 			message = (error as Error).message;
 		} finally {
-			processing = false;
+			loading = false;
+			loadingBar.set(false);
 		}
 	}
 </script>
@@ -94,9 +96,9 @@
 		<button
 			type="submit"
 			class="w-full bg-green-700 hover:bg-green-800 text-white font-bold py-2.5 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition duration-150"
-			disabled={processing}
+			disabled={loading}
 		>
-			{#if processing}Processing...{:else}Reset Password{/if}
+			{#if loading}Processing...{:else}Reset Password{/if}
 		</button>
 	</form>
 </div>

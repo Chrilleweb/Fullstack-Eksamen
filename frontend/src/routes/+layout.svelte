@@ -1,6 +1,21 @@
-<script>
+<script lang="ts">
 	import Header from '../components/Header.svelte';
 	import './styles.css';
+	import 'nprogress/nprogress.css';
+	import NProgress from 'nprogress';
+	import { navigating } from '$app/stores';
+	import { loadingBar } from '../stores/loadingStore';
+
+	NProgress.configure({
+		showSpinner: false,
+		minimum: 0.16
+	});
+
+	$: {
+		if ($navigating || $loadingBar) {
+			NProgress.start();
+		} else NProgress.done();
+	}
 
 	let year = new Date().getFullYear();
 </script>

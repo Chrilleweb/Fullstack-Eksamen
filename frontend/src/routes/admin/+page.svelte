@@ -1,22 +1,27 @@
 <script lang="ts">
-	import { isAuthenticated, user } from '../../auth/auth';
+	import { isAuthenticated, user } from '../../stores/auth';
 	import ErrorAdmin from '../../components/ErrorAdmin.svelte';
 	import Confirmation from '../../components/Confirmation.svelte';
 	import BackArrow from '../../components/backArrow.svelte';
+	import { writable } from 'svelte/store';
+
 	export let data;
 	const userName = data.props.userName;
 	const userId = data.props.userId;
 	const userRole = data.props.userRole;
-	const dataUsers = data.props.dataUsers;
+	const initialDataUsers = data.props.dataUsers;
 	user.set(userName);
 
 	let showConfirmation = false;
 	let userIdToDelete: number | null = null;
 	let usernameToDelete: string | null = null;
 
+	// Using a writable store to manage the user list
+	const dataUsers = writable(initialDataUsers);
+
 	function askDeleteConfirmation(id: number) {
 		userIdToDelete = id;
-		usernameToDelete = dataUsers.find(
+		usernameToDelete = initialDataUsers.find(
 			(user: { id: number }) => user.id === userIdToDelete
 		)?.username;
 		showConfirmation = true;
@@ -35,14 +40,18 @@
 				});
 
 				if (response.ok) {
-					location.reload();
+					dataUsers.update((users) => users.filter((user: { id: number }) => user.id !== userIdToDelete));
+				} else {
+					const errorData = await response.json();
+					console.error('Error deleting user:', errorData.message);
 				}
 			} catch (error) {
 				console.error('Fetch error:', error);
+			} finally {
+				showConfirmation = false; // Close the confirmation dialog
+				userIdToDelete = null; // Reset the deletion ID
 			}
 		}
-		showConfirmation = false; // Close the confirmation dialog
-		userIdToDelete = null; // Reset the deletion ID
 	}
 
 	function cancelDelete() {
@@ -68,7 +77,16 @@
 			});
 
 			if (response.ok) {
-				location.reload();
+				dataUsers.update((users) => {
+					const index = users.findIndex((user: { id: number }) => user.id === id);
+					if (index !== -1) {
+						users[index].role = role;
+					}
+					return users;
+				});
+			} else {
+				const errorData = await response.json();
+				console.error('Error updating role:', errorData.message);
 			}
 		} catch (error) {
 			console.error('Fetch error:', error);
@@ -109,7 +127,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					{#each dataUsers as user}
+					{#each $dataUsers as user}
 						<tr>
 							<td class="px-5 py-2 border-b border-gray-700 bg-gray-800 text-sm text-gray-300"
 								>{user.username}</td
@@ -117,14 +135,7 @@
 							<td class="px-5 py-2 border-b border-gray-700 bg-gray-800 text-sm text-gray-300"
 								>{user.email}</td
 							>
-							<td class="px-5 py-2 border-b border-gray-700 bg-gray-800 text-sm text-gray-300"
-								>{user.role}</td
-							>
 							<td class="px-5 py-2 border-b border-gray-700 bg-gray-800 text-sm text-gray-300">
-								<button
-									on:click={() => askDeleteConfirmation(user.id)}
-									class="text-red-400 hover:text-red-600 transition duration-150">Delete</button
-								>
 								<select
 									bind:value={user.role}
 									on:change={(event) => handleRoleChange(event, user.id)}
@@ -133,6 +144,12 @@
 									<option value="admin">Admin</option>
 									<option value="user">User</option>
 								</select>
+							</td>
+							<td class="px-5 py-2 border-b border-gray-700 bg-gray-800 text-sm text-gray-300">
+								<button
+									on:click={() => askDeleteConfirmation(user.id)}
+									class="text-red-400 hover:text-red-600 transition duration-150">Delete</button
+								>
 							</td>
 						</tr>
 					{/each}

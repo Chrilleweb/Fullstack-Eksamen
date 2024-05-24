@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { isAuthenticated } from '../../auth/auth';
+	import { isAuthenticated } from '../../stores/auth';
+	import { loadingBar } from '../../stores/loadingStore';
 	let username: string = '';
 	let password: string = '';
 	let message: string = '';
@@ -9,6 +10,7 @@
 	async function handleSubmit(event: Event) {
 		event.preventDefault();
 		loading = true; // Start loading
+		loadingBar.set(true); // Start loading bar
 
 		try {
 			const response = await fetch(import.meta.env.VITE_BACKEND_URL + '/api/login', {
@@ -39,6 +41,7 @@
 			console.error('Login failed:', error);
 		} finally {
 			loading = false; // End loading
+			loadingBar.set(false); // End loading bar
 		}
 	}
 
@@ -103,7 +106,7 @@
 			disabled={loading}
 		>
 			{#if loading}
-				<span>Loading...</span>
+				Loading...
 			{:else}
 				Login
 			{/if}

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { isAuthenticated, user } from '../../auth/auth';
+	import { isAuthenticated, user } from '../../stores/auth';
 	import ErrorAuth from '../../components/ErrorAuth.svelte';
 	import Confirmation from '../../components/Confirmation.svelte';
 	import { goto } from '$app/navigation';

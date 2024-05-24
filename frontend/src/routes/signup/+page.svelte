@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+	import { isAuthenticated } from '../../stores/auth';
+	import { loadingBar } from '../../stores/loadingStore';
 	let username: string = '';
 	let email: string = '';
 	let password: string = '';
@@ -15,9 +18,10 @@
 		}
 
 		loading = true; // Start loading
+		loadingBar.set(true); // Start loading bar
 
 		try {
-			const response = await fetch(import.meta.env.VITE_BACKEND_URL + '/api/signup', {
+			const signupResponse = await fetch(import.meta.env.VITE_BACKEND_URL + '/api/signup', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
@@ -25,17 +29,37 @@
 				body: JSON.stringify({ username, email, password })
 			});
 
-			const data = await response.json();
+			const signupData = await signupResponse.json();
 
-			if (!response.ok) {
-				throw new Error(data.message || 'Signup failed');
+			if (!signupResponse.ok) {
+				throw new Error(signupData.message || 'Signup failed');
 			}
 
-			message = data.message;
+			message = signupData.message;
+
+			// Attempt to log in the user after successful signup
+			const loginResponse = await fetch(import.meta.env.VITE_BACKEND_URL + '/api/login', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ username, password })
+			});
+
+			const loginData = await loginResponse.json();
+
+			if (!loginResponse.ok) {
+				throw new Error(loginData.message || 'Login failed');
+			}
+
+			localStorage.setItem('token', loginData.token);
+			isAuthenticated.set(true);
+			goto('/');
 		} catch (error) {
 			message = (error as Error).message;
 		} finally {
 			loading = false; // End loading
+			loadingBar.set(false);
 		}
 	}
 </script>
@@ -52,7 +76,6 @@
 	</div>
 	{#if message === 'User registered successfully'}
 		<p class="text-green-500 mb-4">{message}</p>
-		<a class="text-blue-500 mb-4 block" href="/login">Login here!</a>
 	{:else}
 		<p class="text-red-500 mb-4">{message}</p>
 	{/if}
@@ -112,7 +135,9 @@
 				disabled={loading}
 			/>
 		</div>
-		<a class="text-blue-500 mb-4 block" href="/login">Already have an account? Login here</a>
+		<a class="text-blue-500 mb-4 block hover:underline" href="/login"
+			>Already have an account? Login here</a
+		>
 		<button
 			type="submit"
 			class="w-full bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition duration-150"
@@ -126,11 +151,3 @@
 		</button>
 	</form>
 </div>
-
-<style>
-	input:focus {
-		outline: none;
-		border-color: #4f46e5;
-		box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
-	}
-</style>

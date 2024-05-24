@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { isAuthenticated, user } from '../auth/auth';
+	import { isAuthenticated, user } from '../stores/auth';
 	import Chat from '../components/Chat.svelte';
 	import QuitInfo from '../components/QuitInfo.svelte';
 	export let data;

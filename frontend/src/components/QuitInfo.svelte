@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';
 	import { fade } from 'svelte/transition';
+	import { loadingBar } from '../stores/loadingStore';
 
 	type QuitInfoType = {
 		userId: number;
@@ -24,7 +25,6 @@
 		SEK: 1.56,
 		NOK: 1.55
 	};
-	let loading: boolean = false;
 
 	function ensureLocalDateString(dateString: string): string {
 		const [year, month, day] = dateString.split('-').map(Number);
@@ -74,7 +74,7 @@
 			console.error('Start date is empty');
 			return;
 		}
-		loading = true; // Start loading
+		loadingBar.set(true); // Start loading bar
 
 		const method = $quitInfo ? 'PUT' : 'POST';
 		const url = $quitInfo
@@ -99,14 +99,14 @@
 				if (!$quitInfo) {
 					location.reload();
 				}
-				fetchQuitInfo();
+				await fetchQuitInfo();
 			} else {
 				console.error('Error saving quit info:', data.message);
 			}
 		} catch (error) {
 			console.error('Failed to save quit info:', error);
 		} finally {
-			loading = false; // End loading
+			loadingBar.set(false); // End loading bar
 		}
 	}
 
@@ -205,7 +205,7 @@
 	{/if}
 
 	{#if isFormVisible}
-		<div class="px-6 rounded-lg mb-4">
+		<form on:submit={saveQuitInfo} class="px-6 rounded-lg mb-4">
 			<h2 class="text-2xl font-semibold mb-1">Update Info - When did you stop smoking?</h2>
 			<p class="mb-4">One pack of cigarettes is equivalent to 8 EUR.</p>
 			<div class="mb-4">
@@ -229,16 +229,12 @@
 				/>
 			</div>
 			<button
-				on:click={saveQuitInfo}
+				type="submit"
 				class="bg-green-700 text-white px-4 py-2 rounded-md hover:bg-green-800 transition duration-150"
 			>
-				{#if loading}
-					<span>Loading...</span>
-				{:else}
-					Save Changes
-				{/if}
+				Save Changes
 			</button>
-		</div>
+		</form>
 	{/if}
 
 	{#if $quitInfo}

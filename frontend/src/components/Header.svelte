@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	import { isAuthenticated, user } from '../auth/auth';
+	import { isAuthenticated, user } from '../stores/auth';
 	const allowedPages = ['/', '/admin', '/user-details', '/request-reset'];
 
 	let currentUsername: string;

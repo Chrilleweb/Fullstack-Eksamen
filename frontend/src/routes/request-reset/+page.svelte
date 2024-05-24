@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { writable } from 'svelte/store';
 	import BackArrow from '../../components/backArrow.svelte';
+	import { loadingBar } from '../../stores/loadingStore';
 
 	let email: string = '';
 	let message = writable('');
@@ -9,6 +10,7 @@
 	async function handleResetRequest(event: Event) {
 		event.preventDefault();
 		loading.set(true);
+		loadingBar.set(true);
 		message.set('');
 
 		try {
@@ -30,6 +32,7 @@
 			message.set((error as Error).message);
 		} finally {
 			loading.set(false);
+			loadingBar.set(false);
 		}
 	}
 </script>

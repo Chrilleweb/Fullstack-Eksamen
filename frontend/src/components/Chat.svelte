@@ -2,7 +2,7 @@
 	import { onMount, onDestroy, tick } from 'svelte';
 	import { writable } from 'svelte/store';
 	import io from 'socket.io-client';
-	import { user } from '../auth/auth';
+	import { user } from '../stores/auth';
 
 	let currentUsername: string;
 	user.subscribe((value) => {
