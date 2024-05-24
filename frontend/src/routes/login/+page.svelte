@@ -20,7 +20,7 @@
 			});
 
 			if (response.status === 429) {
-				message = "Too many attempts. Try again later.";
+				message = 'Too many attempts. Try again later.';
 				throw new Error(message);
 			}
 

@@ -38,6 +38,7 @@
 	<title>Reset Password</title>
 	<meta name="description" content="Request Reset Password" />
 </svelte:head>
+
 <div class="container mx-auto py-10 max-w-sm">
 	<div
 		class="py-10 px-6 bg-gradient-to-r from-gray-900 to-green-700 text-white rounded-3xl shadow-lg opacity-80 w-full max-w-sm"

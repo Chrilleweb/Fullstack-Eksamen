@@ -1,7 +1,7 @@
 const db = require("../config/dbConfig");
 
-// Function to retrieve all chat messages
 class ChatMessage {
+  // Function to retrieve all chat messages
   static getAll() {
     return new Promise((resolve, reject) => {
       db.query("SELECT * FROM chat_messages ORDER BY timestamp ASC", (error, results) => {

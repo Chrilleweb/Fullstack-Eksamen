@@ -24,9 +24,9 @@ const sendResetEmail = async (req, res) => {
     }
 
     const token = crypto.randomBytes(20).toString("hex");
-    const expiration = new Date(Date.now() + 3600000);
+    const expiration = new Date(Date.now() + 3600000); // 1 hour
 
-    const username = user.username;// Token expires in 1 hour
+    const username = user.username;
 
     await User.saveResetToken(user.id, token, expiration);
 
