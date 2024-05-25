@@ -28,7 +28,7 @@
 	</main>
 
 	<footer>
-		<p>@ {year} QuitSmarter.</p>
+		<p>@ {year} QuitSmarter. All rights reserved.</p>
 	</footer>
 </div>
 
@@ -55,7 +55,9 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding: 12px;
+		padding: 15px;
+		font-size: 13px;
+		opacity: 0.7;
 	}
 
 	@media (min-width: 480px) {

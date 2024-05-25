@@ -32,14 +32,66 @@ const sendResetEmail = async (req, res) => {
 
     const resetLink = `https://fullstack-eksamen.vercel.app/reset-password/${token}`;
     const emailHtml = `
-    <html>
-    <body>
-        <p>Hello ${username},</p>
-        <p>You requested a password reset. Please click the link below to set a new password. If you did not request this, please ignore this email.</p>
-        <p><a href="${resetLink}" target="_blank">Reset Password</a></p>
-        <p>Best regards,<br>The QuitSmarter Team</p>
-    </body>
-    </html>`;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Your Password</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 8px 8px 0 0;
+        }
+        .content {
+            padding: 20px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8em;
+            color: #777;
+            padding: 20px;
+            border-top: 1px solid #eaeaea;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Password Reset</h1>
+        </div>
+        <div class="content">
+            <p>Hello ${username},</p>
+            <p>You requested a password reset. Please click the button below to set a new password. If you did not request this, please ignore this email.</p>
+            <p><a href="${resetLink}" target="_blank">Reset Password</a></p>
+            <p>Best regards,<br>The QuitSmarter Team</p>
+        </div>
+        <div class="footer">
+            <p>&copy; ${new Date().getFullYear()} QuitSmarter. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+`;
 
     await transporter.sendMail({
       from: "\"QuitSmarter\" quitsmarter@gmail.com",

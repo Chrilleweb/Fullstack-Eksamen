@@ -71,14 +71,71 @@ const signup_post = async (req, res) => {
 
     // Send a welcome email
     const welcomeEmailHtml = `
-    <html>
-      <body>
-        <p>Hi ${username},</p>
-        <p>Thank you for signing up. We are glad to have you on board.</p>
-        <p>Let's make your smoke-free journey successful together!</p>
-        <p>Best regards,<br>The QuitSmarter Team</p>
-      </body>
-    </html>`;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to QuitSmarter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 8px 8px 0 0;
+        }
+        .content {
+            padding: 20px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.8em;
+            color: #777;
+            padding: 20px;
+            border-top: 1px solid #eaeaea;
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome to QuitSmarter!</h1>
+        </div>
+        <div class="content">
+            <p>Hi ${username},</p>
+            <p>Thank you for signing up. We are thrilled to have you on board.</p>
+            <p>Let's make your smoke-free journey successful together!</p>
+            <p>If you have any questions or need assistance, feel free to <a href="mailto:quitsmarter@gmail.com">contact our support team</a>.</p>
+            <p>Best regards,<br>The QuitSmarter Team</p>
+        </div>
+        <div class="footer">
+            <p>&copy; ${new Date().getFullYear()} QuitSmarter. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+`;
+
 
     await transporter.sendMail({
       from: "\"QuitSmarter\" quitsmarter@gmail.com",
