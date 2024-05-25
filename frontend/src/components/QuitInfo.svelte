@@ -69,7 +69,8 @@
 	}
 
 	// Function to add or update quit info
-	async function saveQuitInfo() {
+	async function saveQuitInfo(event: Event) {
+		event.preventDefault();
 		if (!quitDate) {
 			console.error('Start date is empty');
 			return;

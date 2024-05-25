@@ -40,7 +40,9 @@
 				});
 
 				if (response.ok) {
-					dataUsers.update((users) => users.filter((user: { id: number }) => user.id !== userIdToDelete));
+					dataUsers.update((users) =>
+						users.filter((user: { id: number }) => user.id !== userIdToDelete)
+					);
 				} else {
 					const errorData = await response.json();
 					console.error('Error deleting user:', errorData.message);
