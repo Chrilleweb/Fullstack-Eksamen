@@ -59,7 +59,7 @@ const sendResetEmail = async (req, res) => {
             padding: 10px 0;
             background-color: #4CAF50;
             color: white;
-            border-radius: 8px 8px 0 0;
+            border-radius: 8px;
         }
         .content {
             padding: 20px;
@@ -76,9 +76,7 @@ const sendResetEmail = async (req, res) => {
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>Password Reset</h1>
-        </div>
+        <div class="header"></div>
         <div class="content">
             <p>Hello ${username},</p>
             <p>You requested a password reset. Please click the button below to set a new password. If you did not request this, please ignore this email.</p>

@@ -98,7 +98,7 @@ const signup_post = async (req, res) => {
             padding: 10px 0;
             background-color: #4CAF50;
             color: white;
-            border-radius: 8px 8px 0 0;
+            border-radius: 8px;
         }
         .content {
             padding: 20px;
@@ -118,9 +118,7 @@ const signup_post = async (req, res) => {
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>Welcome to QuitSmarter!</h1>
-        </div>
+        <div class="header"></div>
         <div class="content">
             <p>Hi ${username},</p>
             <p>Thank you for signing up. We are thrilled to have you on board.</p>
