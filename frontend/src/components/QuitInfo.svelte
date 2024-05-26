@@ -17,7 +17,10 @@
 	let isFormVisible = false;
 	let cigarettesPerDay = 0;
 	const savings = writable({ savedCigarettes: 0, savedMoney: 0 });
-	let currency = 'DKK';
+
+	const defaultCurrency = 'DKK';
+	let currency = localStorage.getItem('currency') || defaultCurrency;
+
 	const conversionRates = {
 		DKK: 1,
 		USD: 0.15,
@@ -25,6 +28,16 @@
 		SEK: 1.56,
 		NOK: 1.55
 	};
+
+	const packEquivalent: Record<string, number> = {
+		DKK: 60,
+		USD: 9,
+		EUR: 8,
+		SEK: 94,
+		NOK: 93
+	};
+	let equivalentValue = packEquivalent[currency];
+	$: equivalentValue = packEquivalent[currency];
 
 	function ensureLocalDateString(dateString: string): string {
 		const [year, month, day] = dateString.split('-').map(Number);
@@ -142,6 +155,7 @@
 
 	function handleCurrencyChange(event: Event) {
 		currency = (event.target as HTMLSelectElement).value;
+		localStorage.setItem('currency', currency);
 		if ($quitInfo) {
 			calculateSavings($quitInfo.quit_date, $quitInfo.cigarettes_per_day);
 		}
@@ -180,6 +194,7 @@
 		<div class="flex items-center mb-4 ml-6 space-x-4">
 			<select
 				id="currency"
+				bind:value={currency}
 				on:change={handleCurrencyChange}
 				class="border sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-20 p-2.5 bg-gray-700 border-gray-600 text-white focus:ring-blue-500 focus:border-blue-500"
 			>
@@ -208,7 +223,9 @@
 	{#if isFormVisible}
 		<form on:submit={saveQuitInfo} class="px-6 rounded-lg mb-4">
 			<h2 class="text-2xl font-semibold mb-1">Update Info - When did you stop smoking?</h2>
-			<p class="mb-4">One pack of cigarettes is equivalent to 8 EUR.</p>
+			<p class="mb-4">
+				One pack of cigarettes is equivalent to {equivalentValue} <span>{currency}</span>
+			</p>
 			<div class="mb-4">
 				<label for="quitDate" class="block text-sm font-medium">Quit Date</label>
 				<input

@@ -16,11 +16,10 @@ app.use(express.json());
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 40,
+  max: 15,
 });
-app.use(limiter);
 
-app.use("/api", loginSignupRoutes);
+app.use("/api", limiter, loginSignupRoutes);
 app.use("/auth", authRoutes);
 
 const server = http.createServer(app);
