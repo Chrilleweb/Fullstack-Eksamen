@@ -33,7 +33,7 @@
 	}
 </script>
 
-<div class="savings-progress">
+<div class="savings-progress md:text-xl">
 	<h2 class="text-xl font-semibold mb-2">What You Can Buy</h2>
 	<p class="mb-2">Clear view of what you can afford by the money you saved !</p>
 	<p class="mb-4">
@@ -45,5 +45,8 @@
 	<div class="w-full bg-gray-300 rounded-full h-4 overflow-hidden mb-2">
 		<div class="bg-green-500 h-full transition-width duration-300" style="width: {progress}%"></div>
 	</div>
-	<p class="text-sm">{formatNumber(progress)}% towards your next goal</p>
+	<p class="text-sm">
+		{formatNumber(progress)}% towards your next goal (Money saved: {formatNumber(savedMoney)}
+		{currency})
+	</p>
 </div>
