@@ -3,6 +3,7 @@
 	import { writable } from 'svelte/store';
 	import { fade } from 'svelte/transition';
 	import { loadingBar } from '../stores/loadingStore';
+	import SavingsProgress from './SavingsProgress.svelte';
 
 	type QuitInfoType = {
 		userId: number;
@@ -260,10 +261,11 @@
 			<p class="md:text-xl" transition:fade>
 				You have saved <span class="font-bold">{formatNumber($savings.savedCigarettes)}</span> cigarettes
 			</p>
-			<p class="md:text-xl" transition:fade>
+			<p class="md:text-xl mb-4" transition:fade>
 				This is equivalent to <span class="font-bold">{formatNumber($savings.savedMoney)}</span>
 				{currency}
 			</p>
+			<SavingsProgress savedMoney={$savings.savedMoney} {currency} {conversionRates} />
 		</div>
 	{/if}
 </div>
