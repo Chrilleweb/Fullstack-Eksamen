@@ -6,7 +6,6 @@
 	// Define items and their prices in base currency (DKK)
 	const items = [
         { name: 'Movie Ticket', price: 120 },
-        { name: 'Sweater', price: 500 },
 		{ name: 'New Pair of Shoes', price: 800 },
 		{ name: 'Smartphone', price: 3000 },
 		{ name: 'Laptop', price: 7000 },
