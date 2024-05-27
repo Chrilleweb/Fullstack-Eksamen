@@ -5,11 +5,16 @@
 
 	// Define items and their prices in base currency (DKK)
 	const items = [
+        { name: 'Movie Ticket', price: 120 },
+        { name: 'Sweater', price: 500 },
 		{ name: 'New Pair of Shoes', price: 800 },
 		{ name: 'Smartphone', price: 3000 },
 		{ name: 'Laptop', price: 7000 },
 		{ name: 'Vacation', price: 15000 },
-		{ name: 'Car', price: 200000 }
+        { name: 'Motorbike', price: 50000 },
+		{ name: 'Car', price: 200000 },
+        { name: 'Luxury Watch', price: 500000 },
+        { name: 'House', price: 5000000 },
 	];
 
 	let currentItem = items[0];

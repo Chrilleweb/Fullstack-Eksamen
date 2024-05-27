@@ -38,8 +38,8 @@
 </script>
 
 <svelte:head>
-	<title>Reset Password</title>
-	<meta name="description" content="Request Reset Password" />
+	<title>Request Reset Password - QuitSmarter</title>
+	<meta name="description" content="Request Reset Password to QuitSmarter" />
 </svelte:head>
 
 <div class="container mx-auto py-10 max-w-sm">

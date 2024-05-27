@@ -65,8 +65,8 @@
 </script>
 
 <svelte:head>
-	<title>Sign up</title>
-	<meta name="description" content="Sign up" />
+	<title>Sign up - QuitSmarter</title>
+	<meta name="description" content="Sign up to QuitSmarter" />
 </svelte:head>
 
 <div class="mx-auto bg-gray-900 p-6 rounded-md shadow-md opacity-80 text-white">

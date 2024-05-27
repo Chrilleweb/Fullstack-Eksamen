@@ -88,7 +88,9 @@
 	class="container mx-auto py-10 px-6 bg-gradient-to-r from-gray-900 to-green-700 text-white rounded-3xl shadow-lg opacity-80"
 >
 	<div class="chat-container flex flex-col h-96 overflow-hidden rounded-lg">
-		<div class="header bg-gray-800 opacity-80 text-white text-lg font-semibold p-3">Chat With Other Users</div>
+		<div class="header bg-gray-800 opacity-80 text-white text-lg font-semibold p-3">
+			Chat With Other Users
+		</div>
 		<ul
 			bind:this={messageContainer}
 			class="messages flex-1 overflow-y-auto p-3 space-y-2 bg-gray-700"

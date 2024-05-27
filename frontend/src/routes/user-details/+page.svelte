@@ -69,8 +69,8 @@
 </script>
 
 <svelte:head>
-	<title>User Details</title>
-	<meta name="description" content="User details" />
+	<title>User Details - QuitSmarter</title>
+	<meta name="description" content="User details to QuitSmarter" />
 </svelte:head>
 
 {#if userId && isAuthenticated}

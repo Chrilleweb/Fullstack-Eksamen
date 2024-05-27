@@ -97,8 +97,8 @@
 </script>
 
 <svelte:head>
-	<title>Admin</title>
-	<meta name="description" content="Admin" />
+	<title>Admin - QuitSmarter</title>
+	<meta name="description" content="Admin page to QuitSmarter" />
 </svelte:head>
 
 {#if userId && userRole === 'admin' && isAuthenticated}

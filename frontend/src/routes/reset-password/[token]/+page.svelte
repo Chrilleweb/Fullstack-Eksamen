@@ -52,8 +52,8 @@
 </script>
 
 <svelte:head>
-	<title>Reset Your Password</title>
-	<meta name="description" content="Reset Your Password" />
+	<title>Reset Password - QuitSmarter</title>
+	<meta name="description" content="Reset Password to QuitSmarter" />
 </svelte:head>
 
 <div
