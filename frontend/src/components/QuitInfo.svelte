@@ -42,12 +42,7 @@
 
 	function ensureLocalDateString(dateString: string): string {
 		const [year, month, day] = dateString.split('-').map(Number);
-		const date = new Date(year, month - 1, day + 2);
-		// Check if the date has been interpreted as the day before in the local timezone
-		if (date.getDate() != day) {
-			date.setDate(date.getDate());
-		}
-		// Return a string in the format YYYY-MM-DD
+		const date = new Date(Date.UTC(year, month - 1, day));
 		return date.toISOString().slice(0, 10);
 	}
 
