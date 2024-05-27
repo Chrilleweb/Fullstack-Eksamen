@@ -34,8 +34,6 @@
 </script>
 
 <div class="savings-progress md:text-xl">
-	<h2 class="text-xl font-semibold mb-2">What You Can Buy</h2>
-	<p class="mb-2">Clear view of what you can afford by the money you saved !</p>
 	<p class="mb-4">
 		Progress to buy: <span class="font-bold">{currentItem.name}</span> ({formatNumber(
 			currentItem.price * conversionRates[currency]
