@@ -109,6 +109,7 @@
 				on:keydown={checkForEnter}
 				placeholder="Type a message..."
 				class="flex-1 p-2.5 border border-gray-600 rounded-lg outline-none focus:ring-2 focus:ring-blue-500 transition duration-150 ease-in-out bg-gray-700 placeholder-gray-400 text-white"
+				enterkeyhint="send"
 			/>
 			<button
 				on:click={sendMessage}
