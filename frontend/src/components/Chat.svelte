@@ -15,6 +15,7 @@
 	let messageInput = '';
 	let socket: any;
 	let messageContainer: HTMLElement;
+	let inputElement: HTMLInputElement;
 
 	onMount(() => {
 		socket = io(import.meta.env.VITE_BACKEND_URL);
@@ -67,6 +68,7 @@
 		if (messageInput.trim()) {
 			socket.emit('chat message', { username: currentUsername, message: messageInput });
 			messageInput = '';
+			tick().then(() => inputElement.focus()); // Refocus the input field
 		}
 	}
 
@@ -102,6 +104,7 @@
 		<div class="input-group flex p-2 bg-gray-800 rounded-b-lg">
 			<input
 				type="text"
+				bind:this={inputElement}
 				bind:value={messageInput}
 				on:keydown={checkForEnter}
 				placeholder="Type a message..."
