@@ -1,5 +1,6 @@
 # QuitSmarter
-<img width="1434" alt="Skærmbillede 2024-05-24 kl  09 58 54" src="https://github.com/Chrilleweb/Fullstack-Eksamen/assets/96743881/c49d1b45-45b3-4767-a827-a8c80929788e">
+<img width="1432" alt="Skærmbillede 2024-05-27 kl  14 55 57" src="https://github.com/Chrilleweb/Fullstack-Eksamen/assets/96743881/0ef84e68-9d52-4cf6-a7c2-b34e3bccb7eb">
+
 
 Congratulations on taking the first step towards a healthier lifestyle! QuitSmarter is designed to support you on your journey to becoming smoke-free. By logging in, you've unlocked a powerful tool to track the cigarettes you haven't smoked and the money you've saved.
 
