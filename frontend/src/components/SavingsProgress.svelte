@@ -5,15 +5,15 @@
 
 	// Define items and their prices in base currency (DKK)
 	const items = [
-        { name: 'Movie Ticket', price: 120 },
-		{ name: 'New Pair of Shoes', price: 800 },
+		{ name: 'Movie Ticket', price: 120 },
+		{ name: 'New Shoes', price: 800 },
 		{ name: 'Smartphone', price: 3000 },
 		{ name: 'Laptop', price: 7000 },
 		{ name: 'Vacation', price: 15000 },
-        { name: 'Motorbike', price: 50000 },
+		{ name: 'Motorbike', price: 50000 },
 		{ name: 'Car', price: 200000 },
-        { name: 'Luxury Watch', price: 500000 },
-        { name: 'House', price: 5000000 },
+		{ name: 'Luxury Watch', price: 500000 },
+		{ name: 'House', price: 5000000 }
 	];
 
 	let currentItem = items[0];
@@ -37,18 +37,22 @@
 	}
 </script>
 
-<div class="savings-progress md:text-xl">
+<div class="text-lg md:text-xl">
 	<p class="mb-4">
-		Progress to buy: <span class="font-bold">{currentItem.name}</span> ({formatNumber(
-			currentItem.price * conversionRates[currency]
-		)}
-		{currency})
+		Progress to buy: <span class="font-bold">{currentItem.name}</span>
+		<span class="block"
+			>{formatNumber(currentItem.price * conversionRates[currency])} {currency}</span
+		>
 	</p>
-	<div class="w-full bg-gray-300 rounded-full h-4 overflow-hidden mb-2">
-		<div class="bg-green-500 h-full transition-width duration-300" style="width: {progress}%"></div>
+	<div class="w-full bg-gray-300 rounded-full h-4 overflow-hidden mb-2 opacity-80">
+		<div
+			class="bg-green-700 h-full transition-width duration-300 opacity-80"
+			style="width: {progress}%"
+		></div>
 	</div>
 	<p class="text-sm">
-		{formatNumber(progress)}% towards your next goal (Money saved: {formatNumber(savedMoney)}
-		{currency})
+		{formatNumber(progress)}% towards your next goal <br />
+		(You only need {formatNumber(currentItem.price * conversionRates[currency] - savedMoney)}
+		{currency} more to buy {currentItem.name})
 	</p>
 </div>
